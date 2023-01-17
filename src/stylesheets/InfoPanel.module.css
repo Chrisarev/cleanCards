@@ -1,0 +1,36 @@
+
+.panel{
+    width:50%; 
+    min-height:90vh;
+    padding-left:3rem; 
+}
+h1{
+    width:100%;
+    color:rgb(255, 255, 255); 
+    font-size:5em;
+    letter-spacing: 0.05em;
+    margin-top:25%; 
+}
+
+h2{
+    font-weight: 400;
+    color:white; 
+    font-size:2.5em;
+    padding-right:3rem;
+}
+
+button{
+    font-weight:400;
+    font-size:2.5em;
+    margin-top:2rem;
+    border:none;
+    background-color:rgb(113, 249, 245);
+    color:rgb(19, 19, 167);; 
+    border-radius:5rem; 
+    padding-top:2.5rem; 
+    padding-bottom:2.5rem;
+    padding-left:4.5rem; 
+    padding-right:4.5rem;
+}
+
+

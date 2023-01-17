@@ -1,10 +1,7 @@
-h1{
-    width:100vw;
-    text-align: center;
-    color:white; 
-    font-size:calc(1em+1vmin); 
+
+.layout{
+    display:flex; 
+    flex-direction:row; 
+    width:100vw; 
 }
 
-h2{
-
-}

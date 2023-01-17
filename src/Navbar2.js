@@ -1,7 +1,7 @@
-import './stylesheets/navbar2.css'
+import styles from './stylesheets/navbar2.module.css'
 const Navbar = () => {
     return ( 
-        <div className="navbar">
+        <div className={styles.navbar}>
                 <nav>
         <svg width="95px" height="95px" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Frame 1">
@@ -17,7 +17,7 @@ const Navbar = () => {
                     </g>
             </g>
         </svg>
-        <a id="contactLink" href="">Contact Me</a>
+        <a id={styles.contactLink} href="">Contact Me</a>
     </nav>
         </div>
      );
