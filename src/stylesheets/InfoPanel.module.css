@@ -9,7 +9,7 @@ h1{
     color:rgb(255, 255, 255); 
     font-size:5em;
     letter-spacing: 0.05em;
-    margin-top:25%; 
+    margin-top:20%; 
 }
 
 h2{
@@ -22,7 +22,8 @@ h2{
 button{
     font-weight:400;
     font-size:2.5em;
-    margin-top:2rem;
+    margin-top:1.2rem;
+    margin-bottom:1.2rem;
     border:none;
     background-color:rgb(113, 249, 245);
     color:rgb(19, 19, 167);; 
@@ -31,6 +32,26 @@ button{
     padding-bottom:2.5rem;
     padding-left:4.5rem; 
     padding-right:4.5rem;
+    cursor:pointer;
 }
 
+button:hover{
+    transition:all 0.1s linear; 
+    background-color:rgb(89, 232, 227);
+}
 
+h3{
+    color:white;
+    font-size:2em; 
+    font-weight:400;
+}
+
+a{
+    font-weight:bold;
+   /* color:rgb(113, 249, 245);*/
+    color:white;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}

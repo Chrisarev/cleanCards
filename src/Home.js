@@ -1,8 +1,9 @@
 import Navbar2 from './Navbar2.js'
 import VisualPanel from './VisualPanel.js'
 import InfoPanel from './InfoPanel.js'
-
+import CardSection from './CardSection'
 import './stylesheets/Home.css'
+
 const Home = () => {
     return (
         <div className="homePage">
@@ -11,6 +12,7 @@ const Home = () => {
                 <VisualPanel />
                 <InfoPanel />
             </div>
+            <CardSection />
         </div>
       );
 }
