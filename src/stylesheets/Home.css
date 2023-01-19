@@ -1,7 +1,10 @@
-
 .layout{
     display:flex; 
     flex-direction:row; 
     width:100vw; 
+}
+@font-face {
+    font-family: clashDisplayBold;
+    src: url("/src/fonts/ClashDisplay-Semibold.otf");
 }
 

@@ -2,6 +2,7 @@ import Navbar2 from './Navbar2.js'
 import VisualPanel from './VisualPanel.js'
 import InfoPanel from './InfoPanel.js'
 import CardSection from './CardSection'
+import DeckSection from './DeckSection'
 import './stylesheets/Home.css'
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
                 <InfoPanel />
             </div>
             <CardSection />
+            <DeckSection />
         </div>
       );
 }

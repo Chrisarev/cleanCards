@@ -4,22 +4,24 @@
     min-height:90vh;
     padding-left:3rem; 
 }
-h1{
+.header{
     width:100%;
+    font-family: clashDisplayBold;
     color:rgb(255, 255, 255); 
     font-size:5em;
     letter-spacing: 0.05em;
     margin-top:20%; 
+    
 }
 
-h2{
+.subHeader{
     font-weight: 400;
     color:white; 
     font-size:2.5em;
     padding-right:3rem;
 }
 
-button{
+.infoButton{
     font-weight:400;
     font-size:2.5em;
     margin-top:1.2rem;
@@ -35,7 +37,7 @@ button{
     cursor:pointer;
 }
 
-button:hover{
+.infoButton:hover{
     transition:all 0.1s linear; 
     background-color:rgb(89, 232, 227);
 }

@@ -1,0 +1,13 @@
+.panel{
+    min-height: 45rem;
+    background-color: rgb(19, 19, 167);
+    padding-top:7rem;
+}
+.deckHeader{
+    width:100vw; 
+    text-align: center;
+    color:white;
+    font-size: 5rem;
+    margin-top: 0;
+    font-family: clashDisplayBold;
+}
