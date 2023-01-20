@@ -9,6 +9,7 @@ const mongoSanitize = require('express-mongo-sanitize'); ///for preventing mongo
 const testAPIRouter = require('./routes/testAPI')
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
+
 mongoose.connect(dbUrl, {
     useNewUrlParser:true,
     useUnifiedTopology:true,
@@ -22,6 +23,16 @@ db.once("open", () => {
 });///checks to see if connected and handles db connection error
 
 const app = express(); ///starts express app 
+app.get('/api', (req,res) =>{
+    res.json({"users":['userOne', 'userTwo']})
+})
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () =>{ 
+    console.log(`Serving on port ${PORT}`)
+})
+
+/*
 app.set('views', path.join(__dirname, 'views')) ///so we can run app.js from outside of yelpcamp folder 
 app.set('view engine', 'ejs');
 
@@ -48,7 +59,7 @@ app.use((err,req,res,next) => {
 })
 */
 ///listen on heroku specified port or 3000 in dev environment 
-const PORT = process.env.PORT || 9000;
+/*const PORT = process.env.PORT || 9000;
 app.listen(PORT, () =>{ 
     console.log(`Serving on port ${PORT}`)
-})
+})*/
