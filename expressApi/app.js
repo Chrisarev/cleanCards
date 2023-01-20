@@ -2,15 +2,18 @@ const express = require('express');
 const path = require('path'); 
 const mongoose = require('mongoose'); 
 const methodOverride = require('method-override');///allows http verbs other than POST/GET in forms 
-/*const catchAsync = require('./utils/catchAsync')
-const ExpressError = require('./utils/ExpressError')*/
-/*
+const catchAsync = require('./utils/catchAsync')
+const ExpressError = require('./utils/ExpressError')
 const mongoSanitize = require('express-mongo-sanitize'); ///for preventing mongo injection
 const testAPIRouter = require('./routes/testAPI')
-
+const session = require('express-session'); 
+const passport = require('passport'); 
+const LocalStrategy = require('passport-local'); 
+const User = require('./models/user')
+const TestUser = require('./models/TestUser')
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
 
-mongoose.connect(dbUrl, {
+mongoose.connect('mongodb://localhost:27017/cleancards', {
     useNewUrlParser:true,
     useUnifiedTopology:true,
     
@@ -21,10 +24,22 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database Connected")
 });///checks to see if connected and handles db connection error
-*/
+
 const app = express(); ///starts express app 
+app.use(express.json()); 
+app.use(express.urlencoded({extended:true})) ///allows us to get req.params 
+app.use(methodOverride('_method')) ///allows requests other than get/post thru forms 
+
 app.get('/api', (req,res) =>{
-    res.json({"users":['userOne', 'userTwo']})
+    res.json({"users":['userOne', 'userTwo','userThree']})
+})
+
+app.post('/postUser', async (req,res) =>{
+    const testUser = new TestUser(req.body)
+    console.log(req.body)
+    await testUser.save(); 
+    console.log('User created');
+    res.sendStatus(204); 
 })
 
 const PORT = process.env.PORT || 5000;

@@ -1,0 +1,9 @@
+.panel{
+    display:flex; 
+    flex-direction: column;
+    background-color:lightblue;
+    min-height:40vh; 
+    width:100vw; 
+    align-items: center;
+    justify-content: center;
+}
