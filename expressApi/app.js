@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');///allows http verbs other than POST/GET in forms 
 /*const catchAsync = require('./utils/catchAsync')
 const ExpressError = require('./utils/ExpressError')*/
-
+/*
 const mongoSanitize = require('express-mongo-sanitize'); ///for preventing mongo injection
 const testAPIRouter = require('./routes/testAPI')
 
@@ -21,7 +21,7 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database Connected")
 });///checks to see if connected and handles db connection error
-
+*/
 const app = express(); ///starts express app 
 app.get('/api', (req,res) =>{
     res.json({"users":['userOne', 'userTwo']})
