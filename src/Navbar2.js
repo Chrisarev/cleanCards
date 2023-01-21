@@ -1,12 +1,19 @@
 import styles from './stylesheets/navbar2.module.css'
+import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom'
 const Navbar = () => {
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      navigate('signup');
+    }
+
     return ( 
         <div className={styles.navbar}>
                 <nav>
         <svg width="95px" height="95px" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Frame 1">
                 <rect width="100" height="100" />
-                <a id="logo" href=""></a>
+                <Link id="logo" to="/" style={{cursor:'pointer'}}></Link>
                     <g id="logo">
                         <path id="Vector 2" d="M61 28C60.3333 27.1667 55 34.2 39 69L60 39.5L77.5 69L61 28Z" fill="white"
                             stroke="white" />

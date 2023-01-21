@@ -1,0 +1,55 @@
+form{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height:75vh;
+}
+
+.formCard h1{
+    font-size:3rem;
+    text-align: center;
+}
+
+.formCard{
+    display:flex;
+    flex-direction: column;
+    width:30rem;
+    min-height:40rem;
+    background-color:white;
+    padding:1rem;
+    border-radius: 8px;
+}
+
+.formCard label{
+    font-size: calc(1em + 1vmin);
+    color:black;
+    margin-left:10%;
+    margin-bottom:1.5rem;
+}
+
+.formCard input{
+    width:86%; 
+    border:none; 
+    border-bottom:2px solid black; 
+    margin-left:7%;
+    margin-bottom:2rem;
+}
+.formCard button{
+    margin-top:1rem;
+    width:86%;
+    height:4rem;
+    margin-left:7%; 
+    font-size: calc(1em + 1vmin);
+    font-weight:500;
+    background-color: rgb(113, 249, 245);
+    color:black;
+    border:1px solid white;
+    border-radius:2rem;
+    cursor:pointer;
+}
+.formCard button:hover{
+    transition:all 0.07s ease-in-out;
+    background-color:rgb(113, 249, 245);
+    color:black;
+    border:white;
+}
