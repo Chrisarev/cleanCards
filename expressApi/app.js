@@ -34,6 +34,12 @@ app.get('/api', (req,res) =>{
     res.json({"users":['userOne', 'userTwo','userThree']})
 })
 
+app.get('/login', (req,res) =>{
+    console.log('LOGIN REACHED')
+    res.sendStatus(204); 
+
+})
+
 app.post('/postUser', async (req,res) =>{
     const testUser = new TestUser(req.body)
     console.log(req.body)
