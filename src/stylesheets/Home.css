@@ -3,6 +3,9 @@
     flex-direction:row; 
     width:100vw; 
 }
+.homePage{
+    overflow-x:hidden;
+}
 @font-face {
     font-family: clashDisplayBold;
     src: url("/src/fonts/ClashDisplay-Semibold.otf");
