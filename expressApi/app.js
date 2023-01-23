@@ -11,9 +11,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local'); 
 const User = require('./models/user')
 const TestUser = require('./models/TestUser')
+const MongoDBStore = require('connect-mongo'); //allows us to store session in mongo
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
 
-mongoose.connect('mongodb://localhost:27017/cleancards', {
+
+mongoose.connect(dbUrl, {
     useNewUrlParser:true,
     useUnifiedTopology:true,
     
@@ -29,23 +31,85 @@ const app = express(); ///starts express app
 app.use(express.json()); 
 app.use(express.urlencoded({extended:true})) ///allows us to get req.params 
 app.use(methodOverride('_method')) ///allows requests other than get/post thru forms 
+app.use(mongoSanitize()) ///prevents users from inputting characters that could result in mongo injection
+
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
+
+const store = MongoDBStore.create({
+    mongoUrl:dbUrl,
+    secret, 
+    touchAfter: 24 * 60 * 60 ///lazy update session unless 1 day has passed
+});
+
+store.on('error', function(e){
+    console.log('SESSION STORE ERROR:', e)
+})
+
+const sessionConfig = {
+    store,
+    name:'__umli',
+    secret, ///used to sign cookies
+    resave:false,
+    saveUninitialized: true,
+    cookie:{
+        httpOnly: true, ///safety feature to safeguard against cross website scripting
+        ///expires a week from now (1000ms(1sec) * 60secs(1min)* 60mins(1hour)* 24hrs(1day)* 7days(1week))
+        /*secure:true,*/
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7 ///maxAge of cookie is a week
+    }
+}
+
+app.use(session(sessionConfig)) 
+app.use(passport.initialize()) 
+app.use(passport.session()) ///for persistent login sessions
+passport.use(new LocalStrategy(User.authenticate()))
+///telling passport to use UserSchema method authenticate which was added
+///to user model with passport-local-mongoose
+passport.serializeUser(User.serializeUser())
+///tells passport how to store user in session
+passport.deserializeUser(User.deserializeUser())
+///tells passport how to remove user from session
+
+
+app.use((req,res,next) =>{ ///allows flash messages to be accessible in all templates
+    res.locals.currentUser = req.user; ///gives access to the current user in all templates
+    next()
+})
 
 app.get('/api', (req,res) =>{
     res.json({"users":['userOne', 'userTwo','userThree']})
 })
 
 app.get('/login', (req,res) =>{
-    console.log('LOGIN REACHED')
-    res.sendStatus(204); 
 
+    res.sendStatus(204); 
 })
 
-app.post('/postUser', async (req,res) =>{
-    const testUser = new TestUser(req.body)
+app.get('/login1', (req,res) =>{
+    console.log('LOGIN REACHED')
+    res.sendStatus(204); 
+})
+
+
+/**********************NEEDS TESTING *************************/
+app.post('/postUser',async (req,res) =>{
+    /*const testUser = new TestUser(req.body)
     console.log(req.body)
     await testUser.save(); 
     console.log('User created');
-    res.sendStatus(204); 
+    res.sendStatus(204); */
+    try{
+        const {email, username, password} = req.body; 
+        const user = new User({email, username}); 
+        const registeredUser = await User.register(user,password); 
+        req.login(registeredUser, err => {
+            if(err) return next(err) ; 
+            res.json({redirectURL:"/"})
+        })
+    } catch(e) {
+        res.json({redirectURL:"/signup"})
+    }
 })
 
 const PORT = process.env.PORT || 5000;

@@ -1,6 +1,6 @@
 import styles from './stylesheets/Signup.module.css'
 import Navbar from './Navbar2';
-import { userNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
 const Signup = () => {
@@ -8,6 +8,7 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [isPending, setIsPending] = useState(false);
+    let navigate = useNavigate(); 
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,9 +20,14 @@ const Signup = () => {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)
-        }).then(() => {
-            setIsPending(false);
-        }).then(response => response.json())
+        }).then( ///promise needs to be resolved, response.json returns json from response only
+            response => response.json()
+        )
+        .then((data) => { ///data is the json from response
+            setIsPending(false)
+            console.log(data.redirectURL)
+            navigate(data.redirectURL)
+        })
     }
 
     return (
