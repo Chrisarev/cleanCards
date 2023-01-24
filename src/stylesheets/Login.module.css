@@ -22,15 +22,19 @@ form{
 
 .formCard label{
     font-size: calc(1em + 1vmin);
+    font-weight:600;
     color:black;
     margin-left:10%;
-    margin-bottom:1.5rem;
 }
 
 .formCard input{
+    font-size: calc(1em + 1vmin);
     width:86%; 
     border:none; 
     border-bottom:2px solid black; 
+    padding-left:10px;
+    padding-top:1rem;
+    padding-bottom:0.5rem;
     margin-left:7%;
     margin-bottom:2rem;
 }

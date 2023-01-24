@@ -82,8 +82,15 @@ app.get('/api', (req,res) =>{
 })
 
 app.get('/login', (req,res) =>{
-
     res.sendStatus(204); 
+})
+
+app.post('/login', passport.authenticate('local',{keepSessionInfo:true}), (req,res) =>{
+    if(!req.user) {
+        res.sendStatus(401)
+    }else{
+        res.json({user:req.user})
+    }
 })
 
 app.get('/login1', (req,res) =>{

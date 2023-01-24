@@ -5,8 +5,11 @@ import CardSection from './CardSection'
 import DeckSection from './DeckSection'
 import EndHomeSection from './EndHomeSection.js'
 import './stylesheets/Home.css'
-
+import {useContext} from 'react'
+import { UserContext } from './UserContext.js'
 const Home = () => {
+    //const {userInfo,setUserInfo} = useContext(UserContext);
+   // setUserInfo('CHANGED')
     return (
         <div className="homePage">
             <Navbar2 />
@@ -17,6 +20,7 @@ const Home = () => {
             <CardSection />
             <DeckSection />
             <EndHomeSection />
+            {/*<div>{userInfo}</div>*/}
         </div>
       );
 }
