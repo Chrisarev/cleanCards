@@ -6,6 +6,15 @@
 .homePage{
     overflow-x:hidden;
 }
+
+@media (max-width: 740px){
+    .layout{
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+}
 @font-face {
     font-family: clashDisplayBold;
     src: url("/src/fonts/ClashDisplay-Semibold.otf");

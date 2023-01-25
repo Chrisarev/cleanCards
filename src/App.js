@@ -17,9 +17,9 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<UserContext.Provider value={{userInfo,setUserInfo}}><Home /></UserContext.Provider>}></Route>
-            <Route path="signup" element={<Signup />}></Route>
+            <Route path="signup" element={<UserContext.Provider value={{userInfo,setUserInfo}}><Signup /></UserContext.Provider>}></Route>
             <Route path="login" element={<UserContext.Provider value={{userInfo,setUserInfo}}><LogIn /></UserContext.Provider>}></Route>
-            <Route path="testAPI" element={<ExpressReact />}></Route>
+            <Route path="testAPI" element={<UserContext.Provider value={{userInfo,setUserInfo}}><ExpressReact /></UserContext.Provider>}></Route>
             <Route path="userDash" element={<UserContext.Provider value={{userInfo,setUserInfo}}><UserDash /></UserContext.Provider>}></Route>
           </Routes>
         </div>

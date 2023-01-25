@@ -12,10 +12,7 @@ const LogIn = () => {
     const [isPending, setIsPending] = useState(false);
     //const user = useContext(UserContext)
     const {userInfo, setUserInfo} = useContext(UserContext)
-    
     let navigate = useNavigate(); 
-
-    console.log(userInfo)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,8 +37,9 @@ const LogIn = () => {
             return response.json()
         })
         .then((data) => { ///data is the json from response
-            console.log(data.user.username);
-            setUserInfo(data.user.username);
+            if(data.user){
+                localStorage.setItem('username',data.user.username);
+            }
             //navigate(data.redirectURL)
         })
     }
@@ -67,7 +65,7 @@ const LogIn = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     {!isPending && <button>Sign In</button>}
-                    {isPending && <button disabled>Creating..</button>}
+                    {isPending && <button disabled>Logging in..</button>}
                 </div>
             </form>
         </>
