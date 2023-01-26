@@ -54,9 +54,11 @@ a{
     color:white;
     text-decoration: none;
 }
+
 a:hover{
     text-decoration: underline;
 }
+
 @media (max-width: 740px){
     .panel{
         width:100%;
@@ -73,5 +75,6 @@ a:hover{
     .subHeader{
         padding:0; 
         width:90%;
+        text-align: center;
     }
 }

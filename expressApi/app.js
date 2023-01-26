@@ -55,8 +55,8 @@ const sessionConfig = {
         httpOnly: true, ///safety feature to safeguard against cross website scripting
         ///expires a week from now (1000ms(1sec) * 60secs(1min)* 60mins(1hour)* 24hrs(1day)* 7days(1week))
         /*secure:true,*/
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7 ///maxAge of cookie is a week
+        expires: Date.now() + 1000 * 60 * 60 * 24 ,
+        maxAge: 1000 * 60 * 60 * 24  ///maxAge of cookie is a day
     }
 }
 
