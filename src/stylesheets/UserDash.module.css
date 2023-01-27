@@ -1,4 +1,28 @@
-.dashDiv{
-    color:red;
-    font-size:10rem;
+.dash{
+    display:flex;
+    flex-direction:row;
+    width:100vw; 
+    min-height:89vh;
+    background-color:white;
+}
+
+.actionPanel{
+    min-height:100%;
+    min-width:21rem;
+    background-color:lightgray;
+}
+.deckHolder{
+    display:flex;
+    gap:2rem;
+    background-color: white;
+    min-height:100%;
+    min-width:calc(100vw - 21rem);
+    padding-top:2rem;
+    padding-left:2rem;
+}
+.deck{
+    min-height:30rem;
+    max-height:30rem;
+    min-width:25rem;
+    background-color: lightgray
 }

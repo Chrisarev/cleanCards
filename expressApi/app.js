@@ -92,12 +92,15 @@ app.post('/login', passport.authenticate('local',{keepSessionInfo:true}), (req,r
         res.json({user:req.user})
     }
 })
+app.post('/logout', (req,res) =>{
+
+    res.sendStatus(200)
+})
 
 app.get('/login1', (req,res) =>{
     console.log('LOGIN REACHED')
     res.sendStatus(204); 
 })
-
 
 /**********************NEEDS TESTING *************************/
 app.post('/postUser',async (req,res) =>{

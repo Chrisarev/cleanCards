@@ -9,10 +9,16 @@ const UserDash = () => {
     return (  
         <>
         <Navbar2 />
-        <div className={styles.dashDiv}>USER DASH</div>
-        <div className={styles.dashDiv}>{userInfo}</div>
+        <div className={styles.dash}>
+            <div className={styles.actionPanel}></div>
+            <div className={styles.deckHolder}>
+                <div className={styles.deck}></div>
+                <div className={styles.deck}></div>
+                <div className={styles.deck}></div>
+            </div>
+        </div>
         </>
     );
 }
- 
+
 export default UserDash;
