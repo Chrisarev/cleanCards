@@ -1,7 +1,6 @@
 import styles from './stylesheets/Login.module.css'
 import Navbar from './Navbar2';
-import { userNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './UserContext';
@@ -13,7 +12,7 @@ const LogIn = () => {
     //const user = useContext(UserContext)
     const {userInfo, setUserInfo} = useContext(UserContext)
     let navigate = useNavigate(); 
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const user = { username, password};
@@ -43,7 +42,6 @@ const LogIn = () => {
             //navigate(data.redirectURL)
         })
     }
-    
     return (
         <>
             <Navbar />

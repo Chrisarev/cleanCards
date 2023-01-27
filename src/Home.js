@@ -5,11 +5,20 @@ import CardSection from './CardSection'
 import DeckSection from './DeckSection'
 import EndHomeSection from './EndHomeSection.js'
 import './stylesheets/Home.css'
-import {useContext} from 'react'
-import { UserContext } from './UserContext.js'
+import { useState,useEffect } from 'react'
+
 const Home = () => {
-    //const {userInfo,setUserInfo} = useContext(UserContext);
-   // setUserInfo('CHANGED')
+    const [username1, setUsername1] = useState('');
+
+    useEffect(() => {
+        let varr = localStorage.getItem('username');
+        if (varr === null) {
+
+        } else {
+            setUsername1(prev => varr)
+        }
+    }, [username1])
+
     return (
         <div className="homePage">
             <Navbar2 />

@@ -13,7 +13,7 @@ const User = require('./models/user')
 const TestUser = require('./models/TestUser')
 const MongoDBStore = require('connect-mongo'); //allows us to store session in mongo
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
-
+const {isLoggedIn} = require('./middleware')
 
 mongoose.connect(dbUrl, {
     useNewUrlParser:true,
@@ -81,7 +81,7 @@ app.get('/api', (req,res) =>{
     res.json({"users":['userOne', 'userTwo','userThree']})
 })
 
-app.get('/login', (req,res) =>{
+app.get('/login', isLoggedIn, (req,res) =>{
     res.sendStatus(204); 
 })
 
@@ -92,6 +92,7 @@ app.post('/login', passport.authenticate('local',{keepSessionInfo:true}), (req,r
         res.json({user:req.user})
     }
 })
+
 app.post('/logout', (req,res) =>{
 
     res.sendStatus(200)

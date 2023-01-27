@@ -2,7 +2,7 @@ nav {
     width: 100vw;
     display: flex;
     flex-direction: row;
-    height: 11vh;
+    height: 80px;
 }
 
 #logo {

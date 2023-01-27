@@ -1,7 +1,7 @@
 import styles from './stylesheets/Signup.module.css'
 import Navbar from './Navbar2';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -29,7 +29,7 @@ const Signup = () => {
             navigate(data.redirectURL)
         })
     }
-
+    
     return (
         <>
             <Navbar />
