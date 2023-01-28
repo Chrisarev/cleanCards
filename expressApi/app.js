@@ -107,7 +107,7 @@ app.post('/postUser', async (req,res) =>{
         const registeredUser = await User.register(user,password); 
         req.login(registeredUser, err => {
             if(err) return next(err) ; 
-            res.json({redirectURL:"/"})
+            res.json({redirectURL:"/userDash",user:username})
         })
     } catch(e) {
         res.json({redirectURL:"/signup"})

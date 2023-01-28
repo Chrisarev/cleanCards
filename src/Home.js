@@ -29,7 +29,6 @@ const Home = () => {
             <CardSection />
             <DeckSection />
             <EndHomeSection />
-            {/*<div>{userInfo}</div>*/}
         </div>
       );
 }

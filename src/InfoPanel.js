@@ -22,6 +22,7 @@ const InfoPanel = () => {
         return response
     })
     }
+
     const logInFunction = () =>{
       fetch('/login', {
         method:'GET', 

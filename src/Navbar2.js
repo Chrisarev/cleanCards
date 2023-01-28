@@ -1,14 +1,12 @@
 import styles from './stylesheets/navbar2.module.css'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
-import { useContext } from 'react';
-import { UserContext } from './UserContext';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 const Navbar = () => {
     const [username1, setUsername1] = useState('');
-    const [logoutString, setlogoutString] = useState('Log Out')
+    const [logoutString, setlogoutString] = useState('')
     const navigate = useNavigate(); 
 
     useEffect(() => {

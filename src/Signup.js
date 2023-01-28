@@ -1,7 +1,7 @@
 import styles from './stylesheets/Signup.module.css'
 import Navbar from './Navbar2';
 import { useNavigate } from 'react-router-dom';
-import { useState,useEffect } from "react";
+import { useState } from "react";
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -25,6 +25,9 @@ const Signup = () => {
         )
         .then((data) => { ///data is the json from response
             setIsPending(false)
+            if(data.user!=null){
+                localStorage.setItem('username', data.user)
+            }
             console.log(data.redirectURL)
             navigate(data.redirectURL)
         })
