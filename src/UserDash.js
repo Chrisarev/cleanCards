@@ -1,12 +1,24 @@
 import styles from './stylesheets/UserDash.module.css'
-import { useContext } from 'react';
-import { UserContext } from './UserContext';
 import Navbar2 from './Navbar2.js'
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const UserDash = () => {
-    const {userInfo,setUserInfo} = useContext(UserContext); 
-    console.log("WE REACHED UTI")
+    const navigate = useNavigate(); 
+    useEffect(() =>{
+        fetch('/isAuth', {
+            method:'GET', 
+            headers: {"Content-Type":"application/json"}
+          }).then((response) =>{
+            if(!(response.status==204)){
+                navigate('/login')
+                return response;
+            }
+            return response; 
+          })
+    },[])
+
     return (  
         <>
         <Navbar2 />

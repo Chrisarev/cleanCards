@@ -72,17 +72,17 @@ passport.deserializeUser(User.deserializeUser())
 ///tells passport how to remove user from session
 
 
-app.use((req,res,next) =>{ ///allows flash messages to be accessible in all templates
+/*app.use((req,res,next) =>{ ///allows flash messages to be accessible in all templates
     res.locals.currentUser = req.user; ///gives access to the current user in all templates
     next()
-})
-
-app.get('/api', (req,res) =>{
-    res.json({"users":['userOne', 'userTwo','userThree']})
-})
+})*/
 
 app.get('/login', isLoggedIn, (req,res) =>{
     res.sendStatus(204); 
+})
+
+app.get('/isAuth', isLoggedIn, (req,res) =>{
+    res.sendStatus(204);
 })
 
 app.post('/login', passport.authenticate('local',{keepSessionInfo:true}), (req,res) =>{
@@ -94,22 +94,13 @@ app.post('/login', passport.authenticate('local',{keepSessionInfo:true}), (req,r
 })
 
 app.post('/logout', (req,res) =>{
-
-    res.sendStatus(200)
+    req.logout(function(err){
+        if (err) {res.json({attempt:"failed"})}
+        res.json({attempt:"success"})
+    })
 })
 
-app.get('/login1', (req,res) =>{
-    console.log('LOGIN REACHED')
-    res.sendStatus(204); 
-})
-
-/**********************NEEDS TESTING *************************/
-app.post('/postUser',async (req,res) =>{
-    /*const testUser = new TestUser(req.body)
-    console.log(req.body)
-    await testUser.save(); 
-    console.log('User created');
-    res.sendStatus(204); */
+app.post('/postUser', async (req,res) =>{
     try{
         const {email, username, password} = req.body; 
         const user = new User({email, username}); 

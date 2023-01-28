@@ -5,18 +5,33 @@ import { useContext } from 'react';
 import { UserContext } from './UserContext';
 import { useState } from 'react';
 import { useEffect } from 'react';
+
 const Navbar = () => {
     const [username1, setUsername1] = useState('');
+    const [logoutString, setlogoutString] = useState('Log Out')
+    const navigate = useNavigate(); 
 
     useEffect(() => {
-        console.log('useEffect')
         let varr = localStorage.getItem('username');
         if (varr === null) {
-
+            setlogoutString('')
         } else {
             setUsername1(prev => varr)
+            setlogoutString(prev=> 'Log Out')
         }
-    }, [username1])
+    }, [username1, logoutString])
+    
+    const logOutFunction = () =>{
+        localStorage.removeItem('username')
+        fetch('/logout', {
+          method:'POST', 
+          headers: {"Content-Type":"application/json"},
+          body: ''
+        }).then((response) =>{
+          navigate('/login')
+          return response;
+        })
+      }
 
     return (
         <div className={styles.navbar}>
@@ -30,6 +45,7 @@ const Navbar = () => {
                 </svg>
                 </Link>
                 <Link id={styles.contactLink} to="/userDash">{username1}</Link>
+                <Link id={styles.logOut} onClick={logOutFunction}>{logoutString}</Link>
             </nav>
         </div>
     );

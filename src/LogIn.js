@@ -32,11 +32,11 @@ const LogIn = () => {
                 navigate('/login')
                 return response
             }
-            navigate('/userDash')
             return response.json()
         })
         .then((data) => { ///data is the json from response
             if(data.user){
+                navigate('/userDash')
                 localStorage.setItem('username',data.user.username);
             }
             //navigate(data.redirectURL)

@@ -16,9 +16,9 @@ nav {
 #contactLink {
     /*opacity:0;*/
     font-family: 'Raleway', sans-serif;
-    margin-left: auto;
-    margin-right: 7vw;
     margin-top: 3rem;
+    margin-left:60%;
+    margin-right:2rem;
     color: white;
     text-decoration: none;
     font-size: 2.5rem;
@@ -26,4 +26,8 @@ nav {
     animation-delay: 600ms; */
 }
 
-
+#logOut{
+    text-align: center;
+    margin-top:3rem;
+    font-size:2rem;
+}
