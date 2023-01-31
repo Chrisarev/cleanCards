@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema; 
 
 const DeckSchema = new Schema({
-    title:String, 
-    description:String, 
+    deckTitle:String, 
+    deckDesc:String, 
     cardCount:Number,
     deckStyle:String,
     creator:{ ///reference to a User Object

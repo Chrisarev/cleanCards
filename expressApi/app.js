@@ -10,7 +10,7 @@ const session = require('express-session');
 const passport = require('passport'); 
 const LocalStrategy = require('passport-local'); 
 const User = require('./models/user')
-const TestUser = require('./models/TestUser')
+const Deck = require('./models/deck')
 const MongoDBStore = require('connect-mongo'); //allows us to store session in mongo
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
 const {isLoggedIn} = require('./middleware')
@@ -113,7 +113,18 @@ app.post('/postUser', async (req,res) =>{
         res.json({redirectURL:"/signup"})
     }
 })
-
+app.post('/addDeck', async(req,res) =>{
+    try{
+        const {deckTitle, deckDesc, deckStyle} = req.body; 
+        const deck = new Deck({deckTitle, deckDesc, deckStyle})
+        deck.cardCount=0; 
+        deck.creator = req.user._id; 
+        await deck.save();
+        res.sendStatus(204)
+    }catch(e) {
+        res.sendStatus(401)
+    }
+})
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>{ 
     console.log(`Serving on port ${PORT}`)

@@ -61,7 +61,85 @@ button{
         outline: inherit;
     
 }
-.testDIV{
-    padding:800px;
-    background-color:red;
+.addDeckPanel{
+    height:100vh;
+    width:100vw;
+    display:flex;
+    justify-content: center;
+    padding-top:10vh;
+    position:absolute;
+    z-index:2; 
+    background-color: rgba(0,0,0,0.7);
+}
+
+.addDeckCard{
+    background-color: white;
+    width:30rem;
+    max-height:40rem;
+    border-radius:8px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addDeckCard form{
+    display:flex;
+    flex-direction: column;
+    width:80%;
+}
+
+.addDeckCard label{
+    font-size: calc(1em + 1vmin);
+    width:80%;
+    padding-left:10px;
+    margin-bottom:1rem;
+    font-weight:600;
+    color:black;
+}
+
+.addDeckCard input{
+    font-size: calc(1em + 1vmin);
+    width:86%; 
+    border:none; 
+    border-bottom:2px solid black; 
+    padding-left:10px;
+    padding-top:1rem;
+    padding-bottom:0.5rem;
+    margin-left:7%;
+    margin-bottom:2rem;
+}
+
+.addDeckCard form select{
+    font-size: calc(1em + 1vmin);
+    width:92%;
+    margin-left:7%;
+    padding:1rem;
+    border:none;
+    border-bottom:2px solid black;
+    margin-bottom:1.5rem;
+}
+.addDeckCard button{
+    width:86%;
+    height:4rem;
+    margin-left:7%; 
+    font-size: calc(1em + 1vmin);
+    font-weight:500;
+    background-color: rgb(113, 249, 245);
+    color:black;
+    border:1px solid white;
+    border-radius:2rem;
+    cursor:pointer;
+}
+.classic{
+    background-color:white; 
+}
+.frostedGlass{
+    background-color:rgba(255,255,255,0.6);
+}
+.dark{
+    background-color:black; 
+    color:white; 
+}
+.gradient{
+    background-color:salmon;
 }
