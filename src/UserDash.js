@@ -1,18 +1,21 @@
 import styles from './stylesheets/UserDash.module.css'
+import '../src/stylesheets/deckStyles.css'
 import Navbar2 from './Navbar2.js'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import {Link} from 'react-router-dom'; 
 
 const UserDash = () => {
     const navigate = useNavigate();
     const [showAddDeck, setShowAddDeck] = useState(false);
+    const [deleteMode, setDeleteMode] = useState(false); 
     const [deckTitle, setDeckTitle] = useState('')
     const [deckDesc, setDeckDesc] = useState('')
     const [deckStyle, setDeckStyle] = useState('')
     const [isPending, setIsPending] = useState(false);
-    const [decks, setDecks] = useState({})
-
+    const [decks, setDecks] = useState([])
+    
+    ///Checks to see if user is authenticated
     useEffect(() => {
         fetch('/isAuth', {
             method: 'GET',
@@ -27,6 +30,7 @@ const UserDash = () => {
         getUserDecks(); 
     }, [])
 
+    ///Gets decks created by user from backend as json
     ///might need delay before rendering from decks state
     const getUserDecks = async () =>{
         fetch('/getDecks', {
@@ -35,22 +39,25 @@ const UserDash = () => {
         }).then((response) =>{
             return response.json()
         }).then((data) =>{
-            setDecks(prev =>data)
+            setDecks(prev => data)
         })
     }
 
+    ///Sets showAddDeck state to true so addDeckPanel is visible
     const handleAddDeck = (e) => {
         setShowAddDeck(true);
-    }
 
+    }
+    ///Sets showAddDeck state to false so addDeckPanel is NOT visible
     const hideAddDeckPanel = (e) => {
         setShowAddDeck(false);
     }
-
+    ///stops propagation so addDeckPanel doesnt disappear when addDeckCard or inputs are clicked
     const childClick = (e) => {
         e.stopPropagation();
     }
 
+    ///addDeckPanel (only visible when showAddDeck state is set to true)
     function addDeckPopUp(props) {
         return (
             <div id="addDeckPanel" className={styles.addDeckPanel} onClick={hideAddDeckPanel}>
@@ -72,10 +79,10 @@ const UserDash = () => {
                         <label htmlFor="styleSelector">Select Deck Style</label>
                         <select name="deck[deckStyle]" required onChange={(e) => setDeckStyle(e.target.value)}>
                             <option value={deckStyle}>Select Style</option>
-                            <option value="1">Classic</option>
-                            <option value="2">Frosted Glass</option>
-                            <option value="3">Gradient</option>
-                            <option value="4">Dark</option>
+                            <option value="classic">Classic</option>
+                            <option value="frostedGlass">Frosted Glass</option>
+                            <option value="gradient">Gradient</option>
+                            <option value="dark">Dark</option>
                         </select>
                         <button type="submit">Create Deck</button>
                     </form>
@@ -84,6 +91,7 @@ const UserDash = () => {
         );
     }
 
+    ///handles adding deck to database 
     const handleDeckSubmit = (e) => {
         e.preventDefault();
         const deck = {deckTitle, deckDesc, deckStyle};
@@ -96,11 +104,24 @@ const UserDash = () => {
          }).then((response) =>{
              console.log(response);
              setIsPending(false);
-             return response;
+             setDeckDesc('')
+             setDeckStyle('')
+             setDeckTitle('')
+             setShowAddDeck(false)
+             return response.json();
+         }).then((data) =>{
+             console.log(data); 
+             let newArr = decks.slice();
+             newArr.push(data)
+             setDecks(newArr); 
          })
     }
-    const consoleLogger = (e) =>{
-        console.log(decks); 
+    const handleDeleteMode = (e) =>{
+        if(deleteMode===false){
+        setDeleteMode(true); 
+        }else if(deleteMode===true){
+            setDeleteMode(false); 
+        }
     }
     return (
         <>
@@ -111,15 +132,29 @@ const UserDash = () => {
             <div className={styles.dash}>
                 <div className={styles.actionPanel}>
                     <button className="addButton" onClick={handleAddDeck}>Add a deck</button>
-                    <button className="deleteButton">Delete a deck</button>
+                    {!deleteMode && (
+                        <button className="deleteButton" onClick={handleDeleteMode}>Delete a deck</button>
+                    )}
+                    {deleteMode && (
+                        <button className="stopDeleteButton" onClick={handleDeleteMode}>Stop Delete</button>
+                    )}
                 </div>
                 <div className={styles.deckHolder}>
-                    <div className={styles.deck}>
-                        <div className={styles.deckTitle}>Organic Chemsitry</div>
-                        <p className={styles.deckDesc}>Deck made for college organic chemistry class (includes diagrams and images)</p>
+                    {decks.map((deck) => (
+                    <div className={styles.deck + ' ' + deck.deckStyle} key={deck._id}>
+                        <div className={styles.deckTitle}>{deck.deckTitle}</div>
+                        <p className={styles.deckDesc}>{deck.deckDesc}</p>
+                        <div>Card Count:{deck.cardCount}</div>
+                        {deleteMode && (
+                        <button className={styles.deleteButton}>Delete</button>
+                        )}
+                        <button>Edit Deck</button>
+                        <br></br>
+                        <Link to={`/deck/${deck._id}`} deck={deck}>
+                            <button>Use Deck</button>
+                        </Link>
                     </div>
-                    <div className={styles.deck}></div>
-                    <div className={styles.deck}></div>
+                    ))}
                 </div>
             </div>
         </>

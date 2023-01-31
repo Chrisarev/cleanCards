@@ -125,7 +125,7 @@ app.post('/addDeck', isLoggedIn, async(req,res) =>{
         deck.cardCount=0; 
         deck.creator = req.user._id; 
         await deck.save();
-        res.sendStatus(204)
+        res.json(deck)
     }catch(e) {
         res.sendStatus(401)
     }
