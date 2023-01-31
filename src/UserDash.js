@@ -11,6 +11,7 @@ const UserDash = () => {
     const [deckDesc, setDeckDesc] = useState('')
     const [deckStyle, setDeckStyle] = useState('')
     const [isPending, setIsPending] = useState(false);
+    const [decks, setDecks] = useState({})
 
     useEffect(() => {
         fetch('/isAuth', {
@@ -23,7 +24,20 @@ const UserDash = () => {
             }
             return response;
         })
+        getUserDecks(); 
     }, [])
+
+    ///might need delay before rendering from decks state
+    const getUserDecks = async () =>{
+        fetch('/getDecks', {
+            method:'GET',
+            headers: {"Content-Type":"application/json"}
+        }).then((response) =>{
+            return response.json()
+        }).then((data) =>{
+            setDecks(prev =>data)
+        })
+    }
 
     const handleAddDeck = (e) => {
         setShowAddDeck(true);
@@ -85,7 +99,9 @@ const UserDash = () => {
              return response;
          })
     }
-
+    const consoleLogger = (e) =>{
+        console.log(decks); 
+    }
     return (
         <>
             <Navbar2 />

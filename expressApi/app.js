@@ -84,6 +84,11 @@ app.get('/login', isLoggedIn, (req,res) =>{
 app.get('/isAuth', isLoggedIn, (req,res) =>{
     res.sendStatus(204);
 })
+app.get('/getDecks', isLoggedIn, async (req,res) =>{
+    const userId = req.user.id; 
+    const userDecks = await Deck.find({'creator': userId}).populate()
+    res.json(userDecks) 
+})
 
 app.post('/login', passport.authenticate('local',{keepSessionInfo:true}), (req,res) =>{
     if(!req.user) {
@@ -113,7 +118,7 @@ app.post('/postUser', async (req,res) =>{
         res.json({redirectURL:"/signup"})
     }
 })
-app.post('/addDeck', async(req,res) =>{
+app.post('/addDeck', isLoggedIn, async(req,res) =>{
     try{
         const {deckTitle, deckDesc, deckStyle} = req.body; 
         const deck = new Deck({deckTitle, deckDesc, deckStyle})
@@ -125,6 +130,7 @@ app.post('/addDeck', async(req,res) =>{
         res.sendStatus(401)
     }
 })
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>{ 
     console.log(`Serving on port ${PORT}`)
