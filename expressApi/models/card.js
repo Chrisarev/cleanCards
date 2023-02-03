@@ -18,5 +18,11 @@ const CardSchema = new Schema({
     backSide:{
         image:[ImageSchema],
         body:String
+    },
+    containingDeck:{ ///reference to a User Object
+        type:Schema.Types.ObjectId, 
+        ref:'Deck'
     }
 })
+
+module.exports = mongoose.model('Card', CardSchema);

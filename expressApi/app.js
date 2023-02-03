@@ -11,6 +11,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local'); 
 const User = require('./models/user')
 const Deck = require('./models/deck')
+const Card = require('./models/card')
 const MongoDBStore = require('connect-mongo'); //allows us to store session in mongo
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
 const {isLoggedIn} = require('./middleware')
@@ -90,6 +91,12 @@ app.get('/getDecks', isLoggedIn, async (req,res) =>{
     res.json(userDecks) 
 })
 
+app.get('/getCards/:deckID', isLoggedIn, async(req,res) =>{
+    const deckID = req.params.deckID;
+    const cards = await Card.find({'containingDeck': deckID }).populate()
+    res.json(cards)
+})
+
 app.post('/login', passport.authenticate('local',{keepSessionInfo:true}), (req,res) =>{
     if(!req.user) {
         res.sendStatus(401)
@@ -131,7 +138,7 @@ app.post('/addDeck', isLoggedIn, async(req,res) =>{
     }
 })
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6000;
 app.listen(PORT, () =>{ 
     console.log(`Serving on port ${PORT}`)
 })

@@ -3,18 +3,21 @@ import '../src/stylesheets/deckStyles.css'
 import Navbar2 from './Navbar2.js'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {Link} from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+/*import DeckContext from './DeckContext';
+import { useContext } from 'react';*/
 
 const UserDash = () => {
     const navigate = useNavigate();
     const [showAddDeck, setShowAddDeck] = useState(false);
-    const [deleteMode, setDeleteMode] = useState(false); 
+    const [deleteMode, setDeleteMode] = useState(false);
     const [deckTitle, setDeckTitle] = useState('')
     const [deckDesc, setDeckDesc] = useState('')
     const [deckStyle, setDeckStyle] = useState('')
     const [isPending, setIsPending] = useState(false);
     const [decks, setDecks] = useState([])
-    
+    /*const {currDeck, setCurrDeck} = useContext(DeckContext);*/
+
     ///Checks to see if user is authenticated
     useEffect(() => {
         fetch('/isAuth', {
@@ -27,18 +30,18 @@ const UserDash = () => {
             }
             return response;
         })
-        getUserDecks(); 
+        getUserDecks();
     }, [])
 
     ///Gets decks created by user from backend as json
     ///might need delay before rendering from decks state
-    const getUserDecks = async () =>{
+    const getUserDecks = async () => {
         fetch('/getDecks', {
-            method:'GET',
-            headers: {"Content-Type":"application/json"}
-        }).then((response) =>{
+            method: 'GET',
+            headers: { "Content-Type": "application/json" }
+        }).then((response) => {
             return response.json()
-        }).then((data) =>{
+        }).then((data) => {
             setDecks(prev => data)
         })
     }
@@ -94,35 +97,36 @@ const UserDash = () => {
     ///handles adding deck to database 
     const handleDeckSubmit = (e) => {
         e.preventDefault();
-        const deck = {deckTitle, deckDesc, deckStyle};
-        console.log(deck); 
+        const deck = { deckTitle, deckDesc, deckStyle };
+        console.log(deck);
         setIsPending(true);
-         fetch('/addDeck', {
-             method:'POST',
-             headers:{"Content-Type":"application/json"},
-             body:JSON.stringify(deck)
-         }).then((response) =>{
-             console.log(response);
-             setIsPending(false);
-             setDeckDesc('')
-             setDeckStyle('')
-             setDeckTitle('')
-             setShowAddDeck(false)
-             return response.json();
-         }).then((data) =>{
-             console.log(data); 
-             let newArr = decks.slice();
-             newArr.push(data)
-             setDecks(newArr); 
-         })
+        fetch('/addDeck', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(deck)
+        }).then((response) => {
+            console.log(response);
+            setIsPending(false);
+            setDeckDesc('')
+            setDeckStyle('')
+            setDeckTitle('')
+            setShowAddDeck(false)
+            return response.json();
+        }).then((data) => {
+            console.log(data);
+            let newArr = decks.slice();
+            newArr.push(data)
+            setDecks(newArr);
+        })
     }
-    const handleDeleteMode = (e) =>{
-        if(deleteMode===false){
-        setDeleteMode(true); 
-        }else if(deleteMode===true){
-            setDeleteMode(false); 
+    const handleDeleteMode = (e) => {
+        if (deleteMode === false) {
+            setDeleteMode(true);
+        } else if (deleteMode === true) {
+            setDeleteMode(false);
         }
     }
+
     return (
         <>
             <Navbar2 />
@@ -141,19 +145,20 @@ const UserDash = () => {
                 </div>
                 <div className={styles.deckHolder}>
                     {decks.map((deck) => (
-                    <div className={styles.deck + ' ' + deck.deckStyle} key={deck._id}>
-                        <div className={styles.deckTitle}>{deck.deckTitle}</div>
-                        <p className={styles.deckDesc}>{deck.deckDesc}</p>
-                        <div>Card Count:{deck.cardCount}</div>
-                        {deleteMode && (
-                        <button className={styles.deleteButton}>Delete</button>
-                        )}
-                        <button>Edit Deck</button>
-                        <br></br>
-                        <Link to={`/deck/${deck._id}`} deck={deck}>
-                            <button>Use Deck</button>
-                        </Link>
-                    </div>
+                        <div className={styles.deck + ' ' + deck.deckStyle} key={deck._id}>
+                            <div className={styles.deckTitle}>{deck.deckTitle}</div>
+                            <p className={styles.deckDesc}>{deck.deckDesc}</p>
+                            <div className={styles.deckCardCount}>Card Count:{deck.cardCount}</div>
+                                
+                                {deleteMode && (
+                                    <button className={styles.deleteButton}>Delete</button>
+                                )}
+                                <button>Edit Deck</button>
+                            <br></br>
+                            <Link to={`/deck/${deck._id}`}>
+                                <button>Use Deck</button>
+                            </Link>
+                        </div>
                     ))}
                 </div>
             </div>
