@@ -149,11 +149,12 @@ const UserDash = () => {
                             <div className={styles.deckTitle}>{deck.deckTitle}</div>
                             <p className={styles.deckDesc}>{deck.deckDesc}</p>
                             <div className={styles.deckCardCount}>Card Count:{deck.cardCount}</div>
-                                
                                 {deleteMode && (
                                     <button className={styles.deleteButton}>Delete</button>
                                 )}
+                            <Link to={`/deck/edit/${deck._id}`}>
                                 <button>Edit Deck</button>
+                            </Link>
                             <br></br>
                             <Link to={`/deck/${deck._id}`}>
                                 <button>Use Deck</button>

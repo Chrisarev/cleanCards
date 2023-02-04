@@ -5,6 +5,7 @@ import ExpressReact from './ExpressReact';
 import Signup from './Signup'
 import UserDash from './UserDash';
 import UseDeck from './UseDeck';
+import EditDeck from './EditDeck';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createContext } from 'react';
 import { useState } from 'react';
@@ -26,6 +27,7 @@ function App() {
             <Route path="testAPI" element={<ExpressReact />}></Route>
             <Route path="userDash" element={<UserDash />}></Route>
             <Route path="/deck/:deckID" element={<UseDeck />}></Route>
+            <Route path="/deck/edit/:deckID" element={<EditDeck />}></Route>
           </Routes>
         </div>
       </div>

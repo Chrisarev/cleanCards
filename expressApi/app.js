@@ -19,7 +19,6 @@ const {isLoggedIn} = require('./middleware')
 mongoose.connect(dbUrl, {
     useNewUrlParser:true,
     useUnifiedTopology:true,
-    
 });///creates db yelp-camp(or connects to it if already made)
 
 const db = mongoose.connection; 
@@ -125,6 +124,7 @@ app.post('/postUser', async (req,res) =>{
         res.json({redirectURL:"/signup"})
     }
 })
+
 app.post('/addDeck', isLoggedIn, async(req,res) =>{
     try{
         const {deckTitle, deckDesc, deckStyle} = req.body; 
