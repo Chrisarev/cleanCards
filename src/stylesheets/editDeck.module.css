@@ -1,0 +1,32 @@
+.dash {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 89vh;
+    background-color: white;
+}
+
+.actionPanel {
+    min-height: 100%;
+    min-width: 21rem;
+    padding-top: 3rem;
+    background-color: rgb(18, 0, 118);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    gap: 2rem;
+}
+
+.cardHolder {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background-color: lightgray;
+    min-height: 100%;
+    min-width: calc(100vw - 21rem);
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-bottom: 2rem;
+}

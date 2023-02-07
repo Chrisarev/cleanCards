@@ -13,8 +13,13 @@ const User = require('./models/user')
 const Deck = require('./models/deck')
 const Card = require('./models/card')
 const MongoDBStore = require('connect-mongo'); //allows us to store session in mongo
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
 const {isLoggedIn} = require('./middleware')
+const multer  = require('multer'); ///require multer to parse images sent in forms 
+const {storage} = require('./cloudinary')
+const upload = multer({storage}) ///store uploaded images to cloudinary path in storage config 
+
+///THIS NEEDS TO BE SET TO DEPLOY 
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser:true,
@@ -84,6 +89,7 @@ app.get('/login', isLoggedIn, (req,res) =>{
 app.get('/isAuth', isLoggedIn, (req,res) =>{
     res.sendStatus(204);
 })
+
 app.get('/getDecks', isLoggedIn, async (req,res) =>{
     const userId = req.user.id; 
     const userDecks = await Deck.find({'creator': userId}).populate()
@@ -120,7 +126,7 @@ app.post('/postUser', async (req,res) =>{
             if(err) return next(err) ; 
             res.json({redirectURL:"/userDash",user:username})
         })
-    } catch(e) {
+    } catch(e){
         res.json({redirectURL:"/signup"})
     }
 })
@@ -133,8 +139,20 @@ app.post('/addDeck', isLoggedIn, async(req,res) =>{
         deck.creator = req.user._id; 
         await deck.save();
         res.json(deck)
-    }catch(e) {
+    }catch(e){
         res.sendStatus(401)
+    }
+})
+
+app.post('/addCard/:deckID', isLoggedIn, upload.array('image'), async(req,res) =>{
+    try{
+        const {frontSide, backSide} = req.body; 
+        const card = new Card({frontSide,backSide});
+        card.containingDeck = req.params.deckID; 
+        await card.save(); 
+        res.json(card); 
+    }catch(e){
+        res.sendStatus(401); 
     }
 })
 

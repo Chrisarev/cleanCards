@@ -6,6 +6,7 @@ import Signup from './Signup'
 import UserDash from './UserDash';
 import UseDeck from './UseDeck';
 import EditDeck from './EditDeck';
+import AddCard from './AddCard';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createContext } from 'react';
 import { useState } from 'react';
@@ -28,6 +29,7 @@ function App() {
             <Route path="userDash" element={<UserDash />}></Route>
             <Route path="/deck/:deckID" element={<UseDeck />}></Route>
             <Route path="/deck/edit/:deckID" element={<EditDeck />}></Route>
+            <Route path="/deck/edit/:deckID/addCard" element={<AddCard />}></Route>
           </Routes>
         </div>
       </div>
