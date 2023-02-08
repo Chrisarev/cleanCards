@@ -12,11 +12,11 @@ ImageSchema.virtual('thumbnail').get(function(){
    
 const CardSchema = new Schema({
     frontSide:{
-        image:[ImageSchema], 
+        image:String, 
         body:String
     },
     backSide:{
-        image:[ImageSchema],
+        image:String,
         body:String
     },
     containingDeck:{ ///reference to a User Object

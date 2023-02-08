@@ -4,7 +4,7 @@ import Navbar from './Navbar2'
 import styles from './stylesheets/editDeck.module.css'
 import { Link } from "react-router-dom";
 const EditDeck = () => {
-    const { deckID } = useParams();
+    const { deckID,deckStyle } = useParams();
     const [cards, setCards] = useState([])
 
     ///retreive all cards from deck(id in params)
@@ -29,13 +29,13 @@ const EditDeck = () => {
             <Navbar />
             <div className={styles.dash}>
                 <div className={styles.actionPanel}>
-                    <Link to={`/deck/edit/${deckID}/addCard`}>Add Card</Link>
+                    <Link to={`/deck/edit/${deckStyle}/${deckID}/addCard`}>Add Card</Link>
                     <button onClick={deleteCard}>Delete Card</button>
                 </div>
                 {/*ADDS TOO MANY PIXELS HORIZONTALLY, CAUSES OVERFLOWX..FIND OUT WHY*/}
                 <div className={styles.cardHolder}>
                 {cards.map((card) => (
-                    <div key={card._id}>
+                    <div key={card._id} className={deckStyle}>
                         {card.frontSide.body}
                     </div>
                 ))}
