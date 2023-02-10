@@ -10,7 +10,7 @@ const UseDeck = (props) => {
     /*const {currDeck, setCurrDeck} = useContext(DeckContext);
     console.log(currDeck); */
     const {deckID} = useParams(); 
-    const [cards, setCards] = useState()
+    const [cards, setCards] = useState([])
 
     useEffect(() =>{
         fetch(`/getCards/${deckID}`, {
@@ -28,7 +28,7 @@ const UseDeck = (props) => {
         <>
             <Navbar />
             <div>{deckID}</div>
-            <div>Cards: {cards}</div>
+            <div></div>
         </>
     );
 }
