@@ -162,10 +162,21 @@ app.post('/addCard/:deckID', isLoggedIn, upload.any(), async (req, res) => {
         newCard.backSide.body = formData.backSideBody;
         await newCard.save();
         console.log(newCard)
-
         res.sendStatus(204);
     } catch (e) {
         res.sendStatus(401);
+    }
+})
+
+app.delete('/deleteCard/:cardID', isLoggedIn, async (req, res) => {
+    const cardID = req.params.cardID;
+    try {
+        await Card.findByIdAndDelete(cardID)
+        console.log('deleted')
+        res.sendStatus(204)
+    }catch(e) {
+        console.log(e)
+        res.sendStatus(401); 
     }
 })
 

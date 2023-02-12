@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import './stylesheets/animations.css'
 
 const EditDeck = () => {
-    const { deckID,deckStyle } = useParams();
+    const { deckID, deckStyle } = useParams();
     const [cards, setCards] = useState([])
     const [flippedState, setFlippedState] = useState('')
+    const [deleteMode, setDeleteMode] = useState(false)
     ///retreive all cards from deck(id in params)
     useEffect(() => {
         fetch(`/getCards/${deckID}`, {
@@ -21,17 +22,37 @@ const EditDeck = () => {
         })
     }, [])
 
-    const deleteCard = () => {
-        /** fetch POST here  */
-    }
-    const handleFlip = () =>{
-        if(flippedState){
-            setFlippedState('')
-        }else{
-             setFlippedState('flippedStateAni'); 
+    const handleDeleteMode = () => {
+        if (deleteMode) {
+            setDeleteMode(false)
+        } else {
+            setDeleteMode(true)
         }
     }
-                    {/*<div key={card._id} className={styles.card + ' ' + deckStyle + ' ' + flippedState}>
+
+    const handleCardDelete = (cardID) => {
+        fetch(`/deleteCard/${cardID}`, {
+            method: 'DELETE',
+            headers: { "Content-Type": "application/json" },
+        }).then((response) => {
+            if(response.status===204){
+                ///set cards state to be an array of all card objects who's _id do not match delted cardID
+                setCards(prev => prev.filter((card) => card._id !== cardID))
+            }
+            return response
+        }).then((data) => {
+            
+        })
+    }
+
+    const handleFlip = () => {
+        if (flippedState) {
+            setFlippedState('')
+        } else {
+            setFlippedState('flippedStateAni');
+        }
+    }
+    {/*<div key={card._id} className={styles.card + ' ' + deckStyle + ' ' + flippedState}>
                         <img src={card.frontSide.image} alt="" />
                         <div className={styles.cardBody}>{card.frontSide.body}</div>
                         <button className={styles.flipButton} onClick={handleFlip}>Flip</button>
@@ -42,24 +63,29 @@ const EditDeck = () => {
             <div className={styles.dash}>
                 <div className={styles.actionPanel}>
                     <Link to={`/deck/edit/${deckStyle}/${deckID}/addCard`}>Add Card</Link>
-                    <button onClick={deleteCard}>Delete Card</button>
+                    <button onClick={handleDeleteMode}>Delete Card</button>
                 </div>
                 {/*ADDS TOO MANY PIXELS HORIZONTALLY, CAUSES OVERFLOWX..FIND OUT WHY*/}
                 <div className={styles.cardHolder}>
-                {cards.map((card) => (
-                    <div key={card._id} className={styles.flipCard}>
-                        <div className={styles.content}>
-                            <div className={styles.front}>
-                                <img src={card.frontSide.image} alt="" />
-                                <div className={styles.cardBody}>{card.frontSide.body}</div>
+                    {cards.map((card) => (
+                        <div key={card._id} className={styles.flipCard}>
+                            <div className={styles.content}>
+                                <div className={styles.front}>
+                                    <img src={card.frontSide.image} alt="" />
+                                    <div className={styles.cardBody}>{card.frontSide.body}</div>
+                                </div>
+                                <div className={styles.back}>
+                                    <img src={card.backSide.image} alt="" />
+                                    <div className={styles.cardBody}>{card.backSide.body}</div>
+                                </div>
                             </div>
-                            <div className={styles.back}>
-                                <img src={card.backSide.image} alt="" />
-                                <div className={styles.cardBody}>{card.backSide.body}</div>
-                            </div>
+                            {deleteMode &&
+                                <div className={styles.deleteHolder}>
+                                    <button onClick={() => handleCardDelete(card._id)}>Delete</button>
+                                </div>
+                            }
                         </div>
-                    </div>
-                ))}
+                    ))}
                 </div>
             </div>
         </>

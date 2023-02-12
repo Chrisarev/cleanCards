@@ -21,8 +21,10 @@ const CardSection = () => {
             </div>
             <div className={styles.card}>
                <img src="" alt=""></img>
-               <div className={styles.cardTitle}></div>
-               <div className={styles.cardBody}></div>
+               <div className={styles.cardTitle}>Simple and clean interface</div>
+               <div className={styles.cardBody}>
+                 Save time with easy to navigate deck and card creation, editing, and deletion.
+               </div>
                <button className={styles.cardButton}>Explore themes</button>
             </div>
         </div>

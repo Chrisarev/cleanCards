@@ -101,3 +101,9 @@
     color: white;
     transform: rotateY( 180deg );
   }
+
+  .deleteHolder{
+    position:absolute;
+    bottom:0;
+    right:0;
+  }
