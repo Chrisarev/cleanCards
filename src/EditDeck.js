@@ -44,19 +44,7 @@ const EditDeck = () => {
             
         })
     }
-
-    const handleFlip = () => {
-        if (flippedState) {
-            setFlippedState('')
-        } else {
-            setFlippedState('flippedStateAni');
-        }
-    }
-    {/*<div key={card._id} className={styles.card + ' ' + deckStyle + ' ' + flippedState}>
-                        <img src={card.frontSide.image} alt="" />
-                        <div className={styles.cardBody}>{card.frontSide.body}</div>
-                        <button className={styles.flipButton} onClick={handleFlip}>Flip</button>
-                    </div>*/}
+    
     return (
         <>
             <Navbar />
