@@ -3,10 +3,11 @@
     width:100vw; 
     background-color: white;
     justify-content: center;
+    align-items: center;
     gap:5rem;
     flex-wrap: wrap;
-    padding-top:7rem;
-    padding-bottom:7rem;
+    padding-top:4rem;
+    padding-bottom:4rem;
 }
 
 .card{
@@ -18,9 +19,8 @@
     border:none; 
 }
 
-.card img{
-    height:40%; 
-    width:100%; 
+.card .svgHolder{
+    
 }
 
 .cardTitle{

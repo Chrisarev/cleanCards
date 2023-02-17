@@ -14,27 +14,27 @@
 
 .svgCard:nth-of-type(1){
     opacity:1;
-    animation:firstCard 3s forwards;
+    animation:firstCard 2.5s forwards;
 
 }
 
 .svgCard:nth-of-type(2){
-    animation:secondCard 3s forwards;
+    animation:secondCard 2.5s forwards;
     animation-delay: 0.1s;
 }
 
 .svgCard:nth-of-type(3){
-    animation:thirdCard 3s forwards;
+    animation:thirdCard 2.5s forwards;
     animation-delay: 0.2s;
 }
 
 .svgCard:nth-of-type(4){
-    animation:fourthCard 3s forwards;
+    animation:fourthCard 2.5s forwards;
     animation-delay: 0.3s;
 }
 
 .svgCard:nth-of-type(5){
-    animation:fifthCard 3s forwards;
+    animation:fifthCard 2.5s forwards;
     animation-delay: 0.4s;
 }
 
@@ -48,7 +48,7 @@
     0%{
     }10%{
         opacity:1;
-    }30%{
+    }20%{
         transform:translateY(0); 
     }60%{
         transform:translateX(-6rem) rotate(-20deg);
@@ -62,7 +62,7 @@
     0%{
     }10%{
         opacity:1;
-    }30%{
+    }20%{
         transform:translateY(0); 
     }60%{
         transform:translateX(-6rem) rotate(-20deg);
@@ -78,7 +78,7 @@
     0%{
     }10%{
         opacity:1;
-    }30%{
+    }20%{
         transform:translateY(0); 
     }60%{
         transform:translateX(-6rem) rotate(-20deg);
@@ -94,7 +94,7 @@
     0%{
     }10%{
         opacity:1;
-    }30%{
+    }20%{
         transform:translateY(0); 
     }60%{
         transform:translateX(-6rem) rotate(-20deg);
@@ -110,7 +110,7 @@
     0%{
     }10%{
         opacity:1;
-    }30%{
+    }20%{
         transform:translateY(0); 
     }60%{
         transform:translateX(-6rem) rotate(-20deg);
