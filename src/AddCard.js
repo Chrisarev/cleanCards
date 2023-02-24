@@ -16,7 +16,7 @@ const AddCard = () => {
     const [backSideBody, setBackSideBody] = useState('')
     const [showError, setShowError] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
-    const [isPending, setIsPending] = useState(false); 
+    const [isPending, setIsPending] = useState(false);
 
     ///allows preview of image when user selects one(before upload)
     const fileOnChange = (event) => {
@@ -34,7 +34,7 @@ const AddCard = () => {
 
     const handleCardSubmit = (e) => {
         e.preventDefault();
-        setIsPending(true); 
+        setIsPending(true);
         const cardData = { firstImage, secondImage, frontSideBody, backSideBody };
         const FD = new FormData();
         FD.append('firstImage', firstImage)
@@ -76,7 +76,7 @@ const AddCard = () => {
 
     return (
         <>
-            <div>{deckID}</div>
+            <Navbar />
             {showSuccess === true && (
                 <div className={styles.successMSG}>Card added to deck!</div>
             )}
@@ -102,8 +102,10 @@ const AddCard = () => {
                             onChange={(e) => setBackSideBody(e.target.value)}>
                         </textarea>
                     </div>
-                    {!isPending && <button type="submit">Submit</button>}
-                    {isPending && <button disabled>Adding Card..</button>}
+                    <div className={styles.buttonHolder}>
+                        {!isPending && <button type="submit">Submit</button>}
+                        {isPending && <button disabled>Adding Card..</button>}
+                    </div>
                 </form>
             </div>
         </>

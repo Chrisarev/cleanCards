@@ -1,24 +1,28 @@
 nav {
     width: 100vw;
-    display: flex;
-    flex-direction: row;
+    max-width:100vw;
     height: 80px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
 }
-
-#logo {
+.flexContainer{
+    display:flex;
+    gap:3rem;
+    padding-right:3rem;
+}
+.logo {
     /*opacity:0;*/
-    height: 80px;
-    width: 80px;
+    padding-left:2rem;
+    height: 75px;
+    width: 75px;
     /*animation: animateFromTop 1s forwards;
     animation-delay: 700ms; */
 }
 
-#contactLink {
+.userName {
     /*opacity:0;*/
     font-family: 'Raleway', sans-serif;
-    margin-top: 3rem;
-    margin-left:60%;
-    margin-right:2rem;
     color: white;
     text-decoration: none;
     font-size: 2.5rem;
@@ -26,8 +30,12 @@ nav {
     animation-delay: 600ms; */
 }
 
-#logOut{
-    text-align: center;
-    margin-top:3rem;
-    font-size:2rem;
+.logOut{
+    font-size:2.5rem;
+}
+
+@media (max-width: 740px){
+    .logOut{
+        display:none;
+    }
 }
