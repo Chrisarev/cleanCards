@@ -127,6 +127,20 @@ const UserDash = () => {
         }
     }
 
+    const handleDeckDelete = (deckID) => {
+        console.log(deckID)
+        fetch(`deleteDeck/${deckID}`, {
+            method: 'DELETE',
+            headers: { "Content-Type": "application/json" }
+        }).then((response) => {
+            if (response.status === 204) {
+                ///set decks state to be an array of all deck objects who's _id do not match deleted deckID
+                setDecks(prev => prev.filter((deck) => deck._id !== deckID))
+            }
+            return response;
+        })
+    }
+
     return (
         <>
             <Navbar2 />
@@ -149,16 +163,15 @@ const UserDash = () => {
                             <div className={styles.deckTitle}>{deck.deckTitle}</div>
                             <p className={styles.deckDesc}>{deck.deckDesc}</p>
                             <div className={styles.deckCardCount}>Card Count:{deck.cardCount}</div>
-                                {deleteMode && (
-                                    <button className={styles.deleteButton}>Delete</button>
-                                )}
                             <Link to={`/deck/edit/${deck.deckStyle}/${deck._id}`}>
                                 <button>Edit Deck</button>
                             </Link>
-                            <br></br>
                             <Link to={`/deck/${deck._id}`}>
                                 <button>Use Deck</button>
                             </Link>
+                            {deleteMode && (
+                                <button className={styles.deleteButton} onClick={() => handleDeckDelete(deck._id)}>Delete</button>
+                            )}
                         </div>
                     ))}
                 </div>

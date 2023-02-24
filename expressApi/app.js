@@ -151,6 +151,7 @@ app.post('/addDeck', isLoggedIn, async (req, res) => {
 app.post('/addCard/:deckID', isLoggedIn, upload.any(), async (req, res) => {
     const formData = req.body;
     try {
+        const deck= await Deck.findById({ _id: req.params.deckID })
         const newCard = new Card();
         newCard.containingDeck = req.params.deckID;
         if (req.files) {
@@ -161,7 +162,8 @@ app.post('/addCard/:deckID', isLoggedIn, upload.any(), async (req, res) => {
         newCard.frontSide.body = formData.frontSideBody;
         newCard.backSide.body = formData.backSideBody;
         await newCard.save();
-        console.log(newCard)
+        deck.cardCount++;
+        await deck.save();
         res.sendStatus(204);
     } catch (e) {
         res.sendStatus(401);
@@ -175,6 +177,19 @@ app.delete('/deleteCard/:cardID', isLoggedIn, async (req, res) => {
         console.log('deleted')
         res.sendStatus(204)
     }catch(e) {
+        console.log(e)
+        res.sendStatus(401); 
+    }
+})
+
+app.delete('/deleteDeck/:deckID', isLoggedIn, async (req,res) =>{
+    const deckID = req.params.deckID
+    try{
+        await Card.deleteMany({containingDeck: deckID})
+        await Deck.findByIdAndDelete(deckID)
+        console.log('deleted deck and cards')
+        res.sendStatus(204)
+    } catch(e) {
         console.log(e)
         res.sendStatus(401); 
     }

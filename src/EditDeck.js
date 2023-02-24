@@ -36,7 +36,7 @@ const EditDeck = () => {
             headers: { "Content-Type": "application/json" },
         }).then((response) => {
             if(response.status===204){
-                ///set cards state to be an array of all card objects who's _id do not match delted cardID
+                ///set cards state to be an array of all card objects who's _id do not match deleted cardID
                 setCards(prev => prev.filter((card) => card._id !== cardID))
             }
             return response

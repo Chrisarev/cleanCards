@@ -23,7 +23,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    background-color: lightgray;
     min-height: 100%;
     padding-top: 2rem;
     padding-left: 2rem;
@@ -70,9 +69,16 @@ button {
     outline: inherit;
     font-size:1.5rem;
 }
+
 .deck button{
-    margin-top:0.4rem;
-    font-weight: 600;
+    margin-top:1rem;
+    font-weight: 700;
+}
+
+.deleteButton{
+    color:red; 
+    font-weight:600;
+    margin-top:1rem;
 }
 
 .addDeckPanel {
