@@ -5,8 +5,15 @@
 }
 .homePage{
     overflow-x:hidden;
+}button{
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
 }
-
 @media (max-width: 740px){
     .layout{
         flex-direction: column;

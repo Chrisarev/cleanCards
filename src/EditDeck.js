@@ -31,7 +31,7 @@ const EditDeck = () => {
     }
 
     const handleCardDelete = (cardID) => {
-        fetch(`/deleteCard/${cardID}`, {
+        fetch(`/deleteCard/${cardID}/${deckID}`, {
             method: 'DELETE',
             headers: { "Content-Type": "application/json" },
         }).then((response) => {

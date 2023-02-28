@@ -170,10 +170,13 @@ app.post('/addCard/:deckID', isLoggedIn, upload.any(), async (req, res) => {
     }
 })
 
-app.delete('/deleteCard/:cardID', isLoggedIn, async (req, res) => {
+app.delete('/deleteCard/:cardID/:deckID', isLoggedIn, async (req, res) => {
     const cardID = req.params.cardID;
+    const deck = await Deck.findById({_id:req.params.deckID})
     try {
         await Card.findByIdAndDelete(cardID)
+        deck.cardCount--; 
+        await deck.save();
         console.log('deleted')
         res.sendStatus(204)
     }catch(e) {
