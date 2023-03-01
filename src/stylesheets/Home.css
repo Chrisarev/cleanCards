@@ -5,7 +5,9 @@
 }
 .homePage{
     overflow-x:hidden;
-}button{
+}
+
+button{
 background: none;
 color: inherit;
 border: none;
@@ -14,6 +16,7 @@ font: inherit;
 cursor: pointer;
 outline: inherit;
 }
+
 @media (max-width: 740px){
     .layout{
         flex-direction: column;
