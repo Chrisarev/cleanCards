@@ -1,18 +1,25 @@
 .panel{
     display:flex; 
-    flex-direction: column;
+    flex-direction: row;
     background-color:lightblue;
-    min-height:40vh; 
-    width:100vw; 
+    height:80vh; 
+    width:100%; 
     align-items: center;
     justify-content: center;
 }
-.panel div{
-    font-size: 5rem;
-    text-align: center;
-    color:white;
-    font-family: clashDisplayBold;
+.panel .visualSection{
+    height:100%;
+    width:50%; 
 }
+.panel .infoSection{
+    height:100%;
+    width:50%;
+    display:flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
 .panel button{
     font-weight:400;
     font-size:2.5em;
@@ -32,4 +39,36 @@
 .panel button:hover{
     transition:all 0.1s linear; 
     background-color:rgb(89, 232, 227);
+}
+
+.infoSection div{
+    font-size: 5rem;
+    text-align: center;
+    color:white;
+    font-family: clashDisplayBold;
+}
+
+.firstLines{
+    opacity:0;
+}
+.firstCircles{
+    opacity:0;
+}
+.sideLines{
+    opacity:0;
+}
+.award{
+    opacity:0;
+}
+.middleCircle{
+    opacity:0;
+}
+.gear{
+    opacity:0;
+}
+
+@keyframes visual{
+    0%{
+        
+    }
 }

@@ -7,6 +7,7 @@ import UserDash from './UserDash';
 import UseDeck from './UseDeck';
 import EditDeck from './EditDeck';
 import AddCard from './AddCard';
+import UseDeck2 from './UseDeck2'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createContext } from 'react';
 import { useState } from 'react';
@@ -27,7 +28,7 @@ function App() {
             <Route path="login" element={<LogIn />}></Route>
             <Route path="testAPI" element={<ExpressReact />}></Route>
             <Route path="userDash" element={<UserDash />}></Route>
-            <Route path="/deck/:deckID" element={<UseDeck />}></Route>
+            <Route path="/deck/:deckID" element={<UseDeck2 />}></Route>
             <Route path="/deck/edit/:deckStyle/:deckID" element={<EditDeck />}></Route>
             <Route path="/deck/edit/:deckStyle/:deckID/addCard" element={<AddCard />}></Route>
           </Routes>

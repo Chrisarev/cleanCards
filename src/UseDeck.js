@@ -17,6 +17,7 @@ const UseDeck = (props) => {
     const [currCardIndex, setCurrCardIndex] = useState(0)
     const [flippedState, setFlippedState] = useState(false)
     let string = 'flippedCard'
+    
     useEffect(() => {
         fetch(`/getCards/${deckID}`, {
             method: 'GET',
