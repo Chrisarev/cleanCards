@@ -166,7 +166,7 @@ const UserDash = () => {
                             <Link to={`/deck/edit/${deck.deckStyle}/${deck._id}`}>
                                 <button>Edit Deck</button>
                             </Link>
-                            <Link to={`/deck/${deck._id}`}>
+                            <Link to={`/deck/${deck.deckStyle}/${deck._id}`}>
                                 <button>Use Deck</button>
                             </Link>
                             {deleteMode && (

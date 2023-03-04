@@ -1,0 +1,80 @@
+.panel {
+    height: 100vh;
+    width: 100vw;
+    display:flex;
+    flex-direction: column;
+    margin-top:5rem;
+}
+
+.cardHolder {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top:0rem;
+    gap: 10vw;
+    margin-bottom: 3rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: 45rem;
+    width: 32rem;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.card img {
+    min-height: 35%;
+    max-height: 40%;
+    width: 92%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+.cardBody{
+    color:white;
+    font-weight:700;
+    font-size:2rem;
+}
+
+.backCard {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px dashed white;
+}
+.buttonHolder{
+    display:flex;
+    justify-content: center;
+}
+.revealButton {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    width:18rem;
+    transition: transform 0.1s linear;
+    margin-top:55%;
+}
+
+.nextButton {
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    font-weight: 700;
+    font-size: 2.5rem;
+    width:18rem;
+
+}
+
+.revealButton:hover, .nextButton:hover {
+    background-color: white;
+    color: rgb(19, 19, 167);
+    transform: scale(1.05);
+}
+

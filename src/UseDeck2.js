@@ -12,8 +12,12 @@ const UseDeck2 = (props) => {
     console.log(deckId);*/
     /*const {currDeck, setCurrDeck} = useContext(DeckContext);
     console.log(currDeck); */
-    const { deckID } = useParams();
+    const { deckID, deckStyle } = useParams();
     const [cards, setCards] = useState([])
+    const [currCardIndex, setCurrCardIndex] = useState(0);
+    const [revealedState, setRevealedState] = useState(false);
+    const [completedState, setCompletedState] = useState(false); 
+    const [visitedCards, setVisitedCards] = useState([])
 
     useEffect(() => {
         fetch(`/getCards/${deckID}`, {
@@ -26,14 +30,48 @@ const UseDeck2 = (props) => {
         })
     }, [])
 
+    const handleReveal = () => {
+        setRevealedState(true)
+    }
+
+    const handleNextCard = () => {
+        setVisitedCards(visitedCards => [...visitedCards, currCardIndex])
+        console.log(visitedCards)
+        setRevealedState(false)
+        let index = Math.floor(Math.random() * cards.length);
+        if (visitedCards.length === cards.length) {
+            setCompletedState(true); 
+            console.log('completed');
+        } else {
+            while (visitedCards.includes(index)) {
+                index = Math.floor(Math.random() * cards.length);
+            }
+        }
+        setCurrCardIndex(index)
+        console.log(cards.length)
+        console.log('currCard:' + currCardIndex)
+    }
+
     return (
         <>
             <Navbar />
-            <div className={styles.panel}>
-                <div className={styles.cardHolder}>
+            {cards[currCardIndex] &&
+                <div className={styles.panel}>
+                    <div className={styles.cardHolder}>
+                        <div className={styles.card + ' ' + deckStyle}>
+                            <img className={styles.cardImage} src={cards[currCardIndex].frontSide.image}></img>
+                            <div className={styles.cardBody}>{cards[currCardIndex].frontSide.body}</div>
+                        </div>
+                        <div className={`${styles.card} + ${styles.backCard}`}>
+                            <button onClick={handleReveal} className={styles.revealButton}>Reveal</button>
 
+                        </div>
+                    </div>
+                    <div className={styles.buttonHolder}>
+                        <button onClick={handleNextCard} className={styles.nextButton}>Next Card</button>
+                    </div>
                 </div>
-            </div>
+            }
         </>
     );
 }
