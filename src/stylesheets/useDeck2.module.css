@@ -12,7 +12,7 @@
     flex-direction: row;
     justify-content: center;
     margin-top:0rem;
-    gap: 10vw;
+    gap:7vw;
     margin-bottom: 3rem;
 }
 
@@ -29,7 +29,7 @@
 
 .card img {
     min-height: 35%;
-    max-height: 40%;
+    height: 40%;
     width: 92%;
     -o-object-fit: contain;
     object-fit: contain;
@@ -45,10 +45,35 @@
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px dashed white;
 }
+
+.backCardInfo{
+    position:relative; 
+    height:100%;
+    width:100%;
+    border-radius:10px;
+}
+
+.backCardImage{
+    height:40%;
+    width: 92%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+.backCardBody{
+    color:white;
+    font-weight:700;
+    font-size:2rem;
+    width:90%;
+    text-align:center;
+}
+
 .buttonHolder{
     display:flex;
     justify-content: center;
+    gap:2rem;
 }
+
 .revealButton {
     color: white;
     font-size: 2.5rem;
@@ -60,7 +85,16 @@
     transition: transform 0.1s linear;
     margin-top:55%;
 }
-
+.unRevealButton{
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    font-weight: 700;
+    font-size: 2.5rem;
+    width:18rem;
+    height:6.5rem;
+}
 .nextButton {
     color: white;
     border: 1px solid white;
@@ -69,7 +103,7 @@
     font-weight: 700;
     font-size: 2.5rem;
     width:18rem;
-
+    height:6.5rem;
 }
 
 .revealButton:hover, .nextButton:hover {

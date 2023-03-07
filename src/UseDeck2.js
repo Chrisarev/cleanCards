@@ -31,7 +31,11 @@ const UseDeck2 = (props) => {
     }, [])
 
     const handleReveal = () => {
-        setRevealedState(true)
+        if(revealedState===true){
+            setRevealedState(false)
+        }else{
+            setRevealedState(true)
+        }
     }
 
     const handleNextCard = () => {
@@ -43,12 +47,12 @@ const UseDeck2 = (props) => {
             setCompletedState(true); 
             console.log('completed');
         } else {
+            console.log(visitedCards.includes(index))
             while (visitedCards.includes(index)) {
                 index = Math.floor(Math.random() * cards.length);
             }
         }
         setCurrCardIndex(index)
-        console.log(cards.length)
         console.log('currCard:' + currCardIndex)
     }
 
@@ -63,12 +67,24 @@ const UseDeck2 = (props) => {
                             <div className={styles.cardBody}>{cards[currCardIndex].frontSide.body}</div>
                         </div>
                         <div className={`${styles.card} + ${styles.backCard}`}>
+                            {revealedState && 
+                            <div className={`${styles.backCardInfo} + ${deckStyle}`}>
+                                    <img className={styles.backCardImage} src={cards[currCardIndex].backSide.image}></img>
+                                <div className={styles.backCardBody}>
+                                    {cards[currCardIndex].backSide.body}
+                                </div>
+                            </div>
+                            }
+                            {!revealedState &&
                             <button onClick={handleReveal} className={styles.revealButton}>Reveal</button>
-
+                            }
                         </div>
                     </div>
                     <div className={styles.buttonHolder}>
                         <button onClick={handleNextCard} className={styles.nextButton}>Next Card</button>
+                        {revealedState && 
+                            <button onClick={handleReveal} className={styles.unRevealButton}>UnReveal</button>
+                        }
                     </div>
                 </div>
             }
