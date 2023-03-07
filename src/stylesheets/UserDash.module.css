@@ -52,7 +52,6 @@
     align-items: center;
     height: 31rem;
     width: 25rem;
-    background-color: lightgray;
     border-radius: 5px;
 }
 
@@ -139,17 +138,14 @@
     width: 86%;
     border: none;
     border-bottom: 2px solid black;
-    padding-left: 10px;
     padding-top: 1rem;
     padding-bottom: 0.5rem;
-    margin-left: 7%;
     margin-bottom: 2rem;
 }
 
 .addDeckCard form select {
     font-size: calc(1em + 1vmin);
-    width: 92%;
-    margin-left: 7%;
+    width: calc(86% + 5px);
     padding: 1rem;
     border: none;
     border-bottom: 2px solid black;
@@ -167,4 +163,16 @@
     border: 1px solid white;
     border-radius: 2rem;
     cursor: pointer;
+}
+
+
+@media (max-width: 740px){
+    .actionPanel{
+        padding-left:0;
+        justify-content: center;
+    }
+    .deckHolder{
+        padding-left:0;
+        justify-content: center;
+    }
 }

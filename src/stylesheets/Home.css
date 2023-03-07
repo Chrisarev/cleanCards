@@ -4,7 +4,7 @@
     width:100vw; 
 }
 .homePage{
-    overflow-x:hidden;
+    overflow-y:hidden;
 }
 
 button{

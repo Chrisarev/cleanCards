@@ -34,6 +34,10 @@
     height:35%;
     border:solid 1px rgb(195, 195, 195);
     border-radius: 7px;
+    resize:none;
+    padding:5px;
+    font-weight: 500;
+    font-size:calc(1em + 1vmin)
 }
 .buttonHolder{
     width:100vw;

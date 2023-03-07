@@ -6,7 +6,6 @@
 }
 
 .actionPanel {
-  min-height: 100%;
   min-width: 21rem;
   padding-top: 2rem;
   padding-left:7rem;
@@ -39,7 +38,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    min-height: 100%;
     padding:2rem;
     background-color:rgb(19, 19, 167);
     padding-left:7rem;
@@ -104,6 +102,7 @@
     bottom:0;
     right:0;
   }
+
   .deleteHolder button{
     color:white;
     font-weight: 800;
@@ -112,3 +111,15 @@
     width:5rem;
     height:3rem;
   }
+
+  @media (max-width: 740px){
+    .actionPanel{
+        padding-left:0;
+        justify-content: center;
+    }
+    .cardHolder{
+        padding-left:0;
+        padding-right:0;
+        justify-content: center;
+    }
+}

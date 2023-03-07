@@ -5,7 +5,7 @@ import { useState } from "react";
 import Navbar from './Navbar2'
 import styles from './stylesheets/useDeck2.module.css'
 import { Transition } from 'react-transition-group'
-
+import { Link } from "react-router-dom";
 const UseDeck2 = (props) => {
     /*const location = useLocation();
     const deckId = location.pathname;
@@ -87,6 +87,13 @@ const UseDeck2 = (props) => {
                         }
                     </div>
                 </div>
+            }
+            {cards.length===0 && 
+            <div className={styles.noCardsPanel}>
+                <h1 className={styles.noCardsMessage}>This deck has no cards!</h1>
+                <Link to={`/deck/edit/${deckStyle}/${deckID}`}>Edit Deck</Link>
+                <button>Delete Deck</button>
+            </div>
             }
         </>
     );
