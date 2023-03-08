@@ -17,7 +17,7 @@ const UseDeck2 = (props) => {
     const [currCardIndex, setCurrCardIndex] = useState(0);
     const [revealedState, setRevealedState] = useState(false);
     const [completedState, setCompletedState] = useState(false); 
-    const [visitedCards, setVisitedCards] = useState([])
+    const [visitedCards, setVisitedCards] = useState([0])
 
     useEffect(() => {
         fetch(`/getCards/${deckID}`, {
@@ -40,7 +40,6 @@ const UseDeck2 = (props) => {
 
     const handleNextCard = () => {
         setVisitedCards(visitedCards => [...visitedCards, currCardIndex])
-        console.log(visitedCards)
         setRevealedState(false)
         let index = Math.floor(Math.random() * cards.length);
         if (visitedCards.length === cards.length) {

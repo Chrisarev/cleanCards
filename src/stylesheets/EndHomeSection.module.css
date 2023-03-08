@@ -48,27 +48,118 @@
     font-family: clashDisplayBold;
 }
 
-.firstLines{
-    opacity:0;
-}
-.firstCircles{
-    opacity:0;
-}
-.sideLines{
-    opacity:0;
-}
-.award{
-    opacity:0;
-}
-.middleCircle{
-    opacity:0;
-}
-.gear{
-    opacity:0;
+/**** SVG ANIMATION STYLES ****/
+svg * {
+    transform-box: fill-box;
 }
 
-@keyframes visual{
+.firstLines{
+    transform-origin:center;
+    transform:scale(0.01);
+    transition:all 1s linear;
+    animation:firstLinesAni 10s infinite;
+}
+
+.firstCircles{
+    opacity:0;
+    transform-origin:center;
+    transition:all 1s linear;
+    animation:firstCirclesAni 10s infinite;
+}
+
+.sideLines{
+    opacity:0;
+    transition:all 1s linear;
+    animation:sideLinesAni 10s infinite;
+
+}
+
+.award{
+    opacity:0;
+    transition:all 1s linear;
+    animation:awardAni 10s infinite;
+}
+
+.middleCircle{
+    transform-origin:center;
+    transform:scale(0.01);
+    transition:all 1s linear;
+    animation: middleCircleAni 10s infinite;
+}
+
+.gear{
+    transform-origin:center;
+    opacity:0;
+    transition:all 1s linear;
+    animation:gearAni 10s infinite;
+}
+
+@keyframes middleCircleAni{
+   0%{
+
+   }20%{
+    transform:scale(1)
+   }35%{
+    transform:scale(1)
+   }40%{
+       transform:scale(0.01)
+   }
+}
+
+@keyframes firstLinesAni{
     0%{
         
+    }20%{
+        transform:scale(1);
+    }35%{
+        transform:scale(1);
+    }40%{
+        transform:scale(0.01)
+    }
+}
+@keyframes firstCirclesAni{
+    0%{
+
+    }13%{
+        opacity:0;
+    }20%{
+        opacity:1;
+    }35%{
+        opacity:1;
+    }40%{
+        opacity:0;
+    }
+}
+@keyframes sideLinesAni{
+    20%{
+        opacity:0;
+    }35%{
+        opacity:1;
+    }40%{
+        opacity:0;
+    }
+}
+@keyframes gearAni{
+    40%{
+        opacity:0;
+    }50%{
+        opacity:1;
+        transform:rotate(-420deg)
+    }65%{
+        opacity:1;
+    }70%{
+        opacity:0;
+    }
+}
+@keyframes awardAni{
+    70%{
+        transform:translateY(4rem);
+        opacity:0;
+    }85%{
+        opacity:1;
+        transform:translateY(-4rem);
+    }100%{
+        opacity:0;
+        transform:translateY(4rem)
     }
 }

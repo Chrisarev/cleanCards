@@ -74,6 +74,9 @@ const EditDeck = () => {
                             }
                         </div>
                     ))}
+                    {cards.length===0 &&
+                        <h1 className={styles.noCardsMessage}>This deck has no cards!</h1>
+                    }
                 </div>
             </div>
         </>
