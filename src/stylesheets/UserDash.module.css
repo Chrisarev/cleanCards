@@ -81,7 +81,14 @@
     font-size:1.5rem;
 
 }
-
+.noDeckMessage{
+    padding-top:10%;
+    color:white;
+    font-size:calc(1.5em + 2vmin);
+    font-weight:700;
+    width:100%;
+    text-align:center;
+}
 .deleteButton{
     font-weight:600;
     margin-top:1rem;

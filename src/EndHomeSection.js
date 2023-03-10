@@ -1,4 +1,5 @@
 import styles from './stylesheets/EndHomeSection.module.css'
+import { Link } from 'react-router-dom';
 const EndHomeSection = () => {
     return (
         <div className={styles.panel}>
@@ -40,8 +41,10 @@ const EndHomeSection = () => {
                 </svg>
             </div>
             <div className={styles.infoSection}>
-                <div>Learn. Improve. Achieve.</div>
-                <button>Try it out now</button>
+                <p>Learn</p>
+                <p>Improve</p>
+                <p>Achieve</p>
+                <Link to="/signup">Try it out now</Link>
             </div>
         </div>
     );

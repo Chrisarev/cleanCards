@@ -1,8 +1,8 @@
 .panel{
     display:flex; 
     flex-direction: row;
-    background-color:lightblue;
-    height:80vh; 
+    background-color:rgb(83, 80, 106);
+    height:70vh; 
     width:100%; 
     align-items: center;
     justify-content: center;
@@ -11,6 +11,13 @@
     height:100%;
     width:50%; 
 }
+.visualSection svg{
+    width:90%;
+    height:90%;
+    margin-top:5%;
+    margin-left:5%;
+}
+
 .panel .infoSection{
     height:100%;
     width:50%;
@@ -20,34 +27,49 @@
     justify-content: center;
 }
 
-.panel button{
+.panel a{
     font-weight:400;
     font-size:2.5em;
     margin-top:1.2rem;
     margin-bottom:1.2rem;
     border:none;
-    background-color:rgb(19, 19, 167);
-    color:white;
+    background-color:rgb(89, 232, 227);
+    color:rgb(51, 48, 70);
     border-radius:5rem; 
     padding-top:2.5rem; 
     padding-bottom:2.5rem;
     padding-left:4.5rem; 
     padding-right:4.5rem;
     cursor:pointer;
+    
 }
 
-.panel button:hover{
+.panel a:hover{
     transition:all 0.1s linear; 
-    background-color:rgb(89, 232, 227);
+    background-color:rgb(76, 191, 187);
+    text-decoration:none;
 }
 
-.infoSection div{
-    font-size: 5rem;
-    text-align: center;
+.infoSection p{
     color:white;
+   /* font-size:calc(4em + 4vmin); */
+   font-size:5em;
+    font-weight:700;
     font-family: clashDisplayBold;
+    margin:0;
+    width:30%;
 }
-
+.infoSection p:nth-of-type(1){
+    align-self: flex-start;
+    margin-left:18%;
+}
+.infoSection p:nth-of-type(2){
+    align-self:center;
+}
+.infoSection p:nth-of-type(3){
+    align-self:flex-end;
+    margin-right:15%;
+}
 /**** SVG ANIMATION STYLES ****/
 svg * {
     transform-box: fill-box;
@@ -120,9 +142,9 @@ svg * {
 @keyframes firstCirclesAni{
     0%{
 
-    }13%{
+    }14%{
         opacity:0;
-    }20%{
+    }25%{
         opacity:1;
     }35%{
         opacity:1;
@@ -162,4 +184,14 @@ svg * {
         opacity:0;
         transform:translateY(4rem)
     }
+}
+
+@media (max-width: 1000px){
+    .infoSection p{
+        font-size:calc(2em + 2vmin);
+    }
+}
+@media (max-width:740px) {
+    .panel{flex-direction: column;}
+    
 }

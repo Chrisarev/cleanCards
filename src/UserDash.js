@@ -158,6 +158,9 @@ const UserDash = () => {
                     )}
                 </div>
                 <div className={styles.deckHolder}>
+                    {decks.length===0 && 
+                        <div className={styles.noDeckMessage}>You have no decks!</div> 
+                    }
                     {decks.map((deck) => (
                         <div className={styles.deck + ' ' + deck.deckStyle} key={deck._id}>
                             <div className={styles.deckTitle}>{deck.deckTitle}</div>
