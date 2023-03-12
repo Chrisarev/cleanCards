@@ -16,7 +16,7 @@ const UseDeck2 = (props) => {
     const [cards, setCards] = useState([])
     const [currCardIndex, setCurrCardIndex] = useState(0);
     const [revealedState, setRevealedState] = useState(false);
-    const [completedState, setCompletedState] = useState(false); 
+    const [completedState, setCompletedState] = useState(false);
     const [visitedCards, setVisitedCards] = useState([0])
 
     useEffect(() => {
@@ -31,9 +31,9 @@ const UseDeck2 = (props) => {
     }, [])
 
     const handleReveal = () => {
-        if(revealedState===true){
+        if (revealedState === true) {
             setRevealedState(false)
-        }else{
+        } else {
             setRevealedState(true)
         }
     }
@@ -43,7 +43,10 @@ const UseDeck2 = (props) => {
         setRevealedState(false)
         let index = Math.floor(Math.random() * cards.length);
         if (visitedCards.length === cards.length) {
-            setCompletedState(true); 
+            setCompletedState(true);
+            setVisitedCards([0])
+            setCurrCardIndex(0)
+            setRevealedState(false)
             console.log('completed');
         } else {
             console.log(visitedCards.includes(index))
@@ -54,7 +57,10 @@ const UseDeck2 = (props) => {
         setCurrCardIndex(index)
         console.log('currCard:' + currCardIndex)
     }
-
+    const handleReuseDeck = () => {
+        setCompletedState(false)        
+    }
+    
     return (
         <>
             <Navbar />
@@ -66,33 +72,44 @@ const UseDeck2 = (props) => {
                             <div className={styles.cardBody}>{cards[currCardIndex].frontSide.body}</div>
                         </div>
                         <div className={`${styles.card} + ${styles.backCard}`}>
-                            {revealedState && 
-                            <div className={`${styles.backCardInfo} + ${deckStyle}`}>
+                            {revealedState &&
+                                <div className={`${styles.backCardInfo} + ${deckStyle}`}>
                                     <img className={styles.backCardImage} src={cards[currCardIndex].backSide.image}></img>
-                                <div className={styles.backCardBody}>
-                                    {cards[currCardIndex].backSide.body}
+                                    <div className={styles.backCardBody}>
+                                        {cards[currCardIndex].backSide.body}
+                                    </div>
                                 </div>
-                            </div>
                             }
                             {!revealedState &&
-                            <button onClick={handleReveal} className={styles.revealButton}>Reveal</button>
+                                <button onClick={handleReveal} className={styles.revealButton}>Reveal</button>
                             }
                         </div>
                     </div>
-                    <div className={styles.buttonHolder}>
-                        <button onClick={handleNextCard} className={styles.nextButton}>Next Card</button>
-                        {revealedState && 
-                            <button onClick={handleReveal} className={styles.unRevealButton}>UnReveal</button>
-                        }
-                    </div>
+                    {!completedState &&
+                        <div className={styles.buttonHolder}>
+                            <button onClick={handleNextCard} className={styles.nextButton}>Next Card</button>
+                            {revealedState &&
+                                <button onClick={handleReveal} className={styles.unRevealButton}>UnReveal</button>
+                            }
+                        </div>
+                    }
+                    {completedState &&
+                        <div className={styles.completedPanel}>
+                            <div className={styles.completedMessage}>You've completed this deck!</div>
+                            <div className={styles.completedButtonHolder}>
+                                <button onClick={handleReuseDeck}>Use Deck Again</button>
+                                <Link to={`/userDash`}>Use Other Deck</Link>
+                            </div>
+                        </div>
+                    }
                 </div>
             }
-            {cards.length===0 && 
-            <div className={styles.noCardsPanel}>
-                <h1 className={styles.noCardsMessage}>This deck has no cards!</h1>
-                <Link to={`/deck/edit/${deckStyle}/${deckID}`}>Edit Deck</Link>
-                <button>Delete Deck</button>
-            </div>
+            {cards.length === 0 &&
+                <div className={styles.noCardsPanel}>
+                    <h1 className={styles.noCardsMessage}>This deck has no cards!</h1>
+                    <Link to={`/deck/edit/${deckStyle}/${deckID}`}>Edit Deck</Link>
+                    <button>Delete Deck</button>
+                </div>
             }
         </>
     );
