@@ -32,7 +32,7 @@ const Signup = () => {
             navigate(data.redirectURL)
         })
     }
-    
+
     return (
         <>
             <Navbar />
@@ -43,22 +43,32 @@ const Signup = () => {
                     <input
                         type="email"
                         required
+                        maxLength={64}
                         value={email}
+                        placeholder="name@email.com"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label>Username:</label>
                     <input
                         type="text"
                         required
+                        minLength={6}
+                        maxLength={20}
+                        pattern="[a-zA-Z0-9-]+"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="6-20 letters long"
+                        onChange={(e) => setUsername(e.target.value.replace(/[^a-zA-Z\d]/ig, ""))}
                     />
                     <label>Password:</label>
                     <input
                         type="password"
                         required
+                        minLength={6}
+                        maxLength={20}
+                        pattern="[a-zA-Z0-9-]+"
+                        placeholder='6-20 letters long'
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value.replace(/[^a-zA-Z\d]/ig, ""))}
                     />
                     {!isPending && <button>Sign Up</button>}
                     {isPending && <button disabled>Creating..</button>}

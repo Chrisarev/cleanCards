@@ -21,6 +21,7 @@ const { isLoggedIn } = require('./middleware')
 const multer = require('multer'); ///require multer to parse images sent in forms 
 const { storage } = require('./cloudinary')
 const upload = multer({ storage }) ///store uploaded images to cloudinary path in storage config 
+const {signUpUserSchema} = require('./joiSchemas')
 
 ///THIS NEEDS TO BE SET TO DEPLOY 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
@@ -121,7 +122,7 @@ app.post('/logout', (req, res) => {
     })
 })
 
-app.post('/postUser', async (req, res) => {
+app.post('/postUser', validateSignUpUser, async (req, res) => {
     try {
         const { email, username, password } = req.body;
         const user = new User({ email, username });
