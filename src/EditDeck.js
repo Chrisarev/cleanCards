@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Navbar from './Navbar2'
 import styles from './stylesheets/editDeck.module.css'
 import { Link } from "react-router-dom";
-import './stylesheets/animations.css'
 
 const EditDeck = () => {
     const { deckID, deckStyle } = useParams();

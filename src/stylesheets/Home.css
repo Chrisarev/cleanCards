@@ -2,6 +2,8 @@
     display:flex; 
     flex-direction:row; 
     width:100vw; 
+    background-color:rgb(19, 19, 167);
+
 }
 .homePage{
     overflow-y:hidden;

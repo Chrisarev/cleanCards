@@ -5,6 +5,8 @@ nav {
     display:flex;
     align-items: center;
     justify-content: space-between;
+    background-color:rgb(19, 19, 167);
+
 }
 .flexContainer{
     display:flex;
