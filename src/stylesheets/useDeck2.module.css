@@ -148,7 +148,22 @@
     border-radius:5rem;
     padding:2rem 2.5rem;
 }
-
+.noCardsButtonHolder{
+    display:flex;
+    gap:2rem;
+}
+.noCardsButtonHolder a, .noCardsButtonHolder button{
+    box-sizing: border-box;
+    width:15rem;
+    text-align: center;
+    white-space: nowrap;
+    padding:2rem 2.5rem;
+    border:none;
+}
+.noCardsButtonHolder a:hover, .noCardsButtonHolder button:hover{
+    background-color: rgb(87, 216, 212);
+    text-decoration: none;
+}
 .completedPanel{
     width:100%;
     display:flex;

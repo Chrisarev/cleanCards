@@ -56,12 +56,12 @@ const EditDeck = () => {
                 <div className={styles.cardHolder}>
                     {cards.map((card) => (
                         <div key={card._id} className={styles.flipCard}>
-                            <div className={styles.content}>
-                                <div className={styles.front}>
+                            <div className={styles.content+' '+deckStyle}>
+                                <div className={styles.front+' '+ deckStyle}>
                                     <img src={card.frontSide.image} alt="" />
                                     <div className={styles.cardBody}>{card.frontSide.body}</div>
                                 </div>
-                                <div className={styles.back}>
+                                <div className={styles.back+' '+ deckStyle}>
                                     <img src={card.backSide.image} alt="" />
                                     <div className={styles.cardBody}>{card.backSide.body}</div>
                                 </div>

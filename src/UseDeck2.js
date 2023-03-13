@@ -58,6 +58,9 @@ const UseDeck2 = (props) => {
         console.log('currCard:' + currCardIndex)
     }
     const handleReuseDeck = () => {
+        setVisitedCards([0])
+        setCurrCardIndex(0)
+        setRevealedState(false)
         setCompletedState(false)        
     }
     
@@ -107,8 +110,10 @@ const UseDeck2 = (props) => {
             {cards.length === 0 &&
                 <div className={styles.noCardsPanel}>
                     <h1 className={styles.noCardsMessage}>This deck has no cards!</h1>
-                    <Link to={`/deck/edit/${deckStyle}/${deckID}`}>Edit Deck</Link>
-                    <button>Delete Deck</button>
+                    <div className={styles.noCardsButtonHolder}>
+                        <Link to={`/deck/edit/${deckStyle}/${deckID}`}>Edit Deck</Link>
+                        <button>Delete Deck</button>
+                    </div>
                 </div>
             }
         </>

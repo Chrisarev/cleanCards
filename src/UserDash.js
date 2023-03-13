@@ -158,8 +158,8 @@ const UserDash = () => {
                     )}
                 </div>
                 <div className={styles.deckHolder}>
-                    {decks.length===0 && 
-                        <div className={styles.noDeckMessage}>You have no decks!</div> 
+                    {decks.length === 0 &&
+                        <div className={styles.noDeckMessage}>You have no decks!</div>
                     }
                     {decks.map((deck) => (
                         <div className={styles.deck + ' ' + deck.deckStyle} key={deck._id}>
@@ -169,9 +169,11 @@ const UserDash = () => {
                             <Link to={`/deck/edit/${deck.deckStyle}/${deck._id}`}>
                                 <button>Edit Deck</button>
                             </Link>
-                            <Link to={`/deck/${deck.deckStyle}/${deck._id}`}>
-                                <button>Use Deck</button>
-                            </Link>
+                            {deck.cardCount > 0 && 
+                                <Link to={`/deck/${deck.deckStyle}/${deck._id}`}>
+                                    <button>Use Deck</button>
+                                </Link>
+                            }
                             {deleteMode && (
                                 <button className={styles.deleteButton} onClick={() => handleDeckDelete(deck._id)}>Delete</button>
                             )}

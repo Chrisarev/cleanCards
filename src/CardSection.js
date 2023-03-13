@@ -1,5 +1,5 @@
 import styles from './stylesheets/cardSection.module.css'
-
+import { Link } from 'react-router-dom';
 const CardSection = () => {
   return (
     <div className={styles.cardHolder}>
@@ -94,7 +94,7 @@ const CardSection = () => {
         <div className={styles.cardBody}>
           Save time with easy to navigate deck and card creation, editing, and deletion.
         </div>
-        <button className={styles.cardButton}>Try it out</button>
+        <Link to='/signup' className={styles.cardButton}>Try it out</Link>
       </div>
     </div>
   );
