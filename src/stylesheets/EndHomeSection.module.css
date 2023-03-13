@@ -116,11 +116,11 @@ svg * {
    0%{
 
    }20%{
-    transform:scale(1)
+    transform:scale(1);
    }35%{
-    transform:scale(1)
+    transform:scale(1);
    }40%{
-       transform:scale(0)
+       transform:scale(0);
    }
 }
 
@@ -132,7 +132,7 @@ svg * {
     }35%{
         transform:scale(1);
     }40%{
-        transform:scale(0)
+        transform:scale(0);
     }
 }
 @keyframes firstCirclesAni{

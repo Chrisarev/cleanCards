@@ -26,10 +26,10 @@ const extension = (joi) =>({
 ///new Joi instance with our extension applied 
 const Joi = BaseJoi.extend(extension);
 
-module.exports.validateSignUpUser= Joi.object({
+module.exports.validateSignUpUser = Joi.object({
     user: Joi.object({ ///campground should be an object AND it is required
         email: Joi.string().required().escapeHTML().min(6).max(20),
         username: Joi.string().required().escapeHTML().alphanum().min(6).max(20),
-        password: Joi.string().required().escapeHTML().alphanum().min(6).max(20),
+        password: Joi.string().required().escapeHTML().alphanum().min(6).max(20)
     }).required()
-});
+})
