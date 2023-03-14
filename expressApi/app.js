@@ -39,6 +39,7 @@ db.once("open", () => {
 
 const app = express(); ///starts express app 
 app.use(express.json({ limit: "50mb" }));
+app.use(express.static(path.join(__dirname, './client/build')))
 app.use(express.urlencoded({ extended: true })) ///allows us to get req.params 
 app.use(methodOverride('_method')) ///allows requests other than get/post thru forms 
 app.use(mongoSanitize()) ///prevents users from inputting characters that could result in mongo injection
@@ -197,6 +198,9 @@ app.delete('/deleteDeck/:deckID', isLoggedIn, async (req,res) =>{
         console.log(e)
         res.sendStatus(401); 
     }
+})
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'./client/build'))
 })
 
 const PORT = process.env.PORT || 6000;
