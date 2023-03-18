@@ -24,8 +24,7 @@ const upload = multer({ storage }) ///store uploaded images to cloudinary path i
 const {validateUserInfo} = require('./middleware')
 
 ///THIS NEEDS TO BE SET TO DEPLOY 
-///const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
-const dbUrl = 'mongodb://localhost:27017/cleancards';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
