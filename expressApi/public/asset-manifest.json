@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.45a5f091.css",
+    "main.js": "/static/js/main.5ff46837.js",
+    "static/js/787.6966a1fe.chunk.js": "/static/js/787.6966a1fe.chunk.js",
+    "static/media/ClashDisplay-Semibold.otf": "/static/media/ClashDisplay-Semibold.4502ac103e57426165ae.otf",
+    "index.html": "/index.html",
+    "main.45a5f091.css.map": "/static/css/main.45a5f091.css.map",
+    "main.5ff46837.js.map": "/static/js/main.5ff46837.js.map",
+    "787.6966a1fe.chunk.js.map": "/static/js/787.6966a1fe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.45a5f091.css",
+    "static/js/main.5ff46837.js"
+  ]
+}

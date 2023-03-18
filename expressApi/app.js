@@ -24,8 +24,8 @@ const upload = multer({ storage }) ///store uploaded images to cloudinary path i
 const {validateUserInfo} = require('./middleware')
 
 ///THIS NEEDS TO BE SET TO DEPLOY 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
-
+///const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cleancards';
+const dbUrl = 'mongodb://localhost:27017/cleancards';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -39,11 +39,11 @@ db.once("open", () => {
 
 const app = express(); ///starts express app 
 app.use(express.json({ limit: "50mb" }));
-app.use(express.static(path.join(__dirname, './client/build')))
+app.use(express.static(path.join(__dirname + '/public')))
 app.use(express.urlencoded({ extended: true })) ///allows us to get req.params 
 app.use(methodOverride('_method')) ///allows requests other than get/post thru forms 
 app.use(mongoSanitize()) ///prevents users from inputting characters that could result in mongo injection
-
+//
 const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
 
 const store = MongoDBStore.create({
@@ -199,11 +199,14 @@ app.delete('/deleteDeck/:deckID', isLoggedIn, async (req,res) =>{
         res.sendStatus(401); 
     }
 })
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'./client/build'))
-})
 
-const PORT = process.env.PORT || 6000;
+/*
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+ './public'))
+})*/
+
+//const PORT = process.env.PORT || 6000;
+const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Serving on port: ${PORT}`)
 })
