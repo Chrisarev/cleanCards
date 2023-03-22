@@ -1,0 +1,80 @@
+
+.panel{
+    width:50%; 
+    min-height:90vh;
+    padding-left:3rem; 
+}
+.header{
+    width:100%;
+    font-family: clashDisplayBold;
+    color:rgb(255, 255, 255); 
+    font-size:5em;
+    letter-spacing: 0.05em;
+    margin-top:20%; 
+    
+}
+
+.subHeader{
+    font-weight: 400;
+    color:white; 
+    font-size:2.5em;
+    padding-right:3rem;
+}
+
+.infoButton{
+    font-weight:400;
+    font-size:2.5em;
+    margin-top:1.2rem;
+    margin-bottom:1.2rem;
+    border:none;
+    background-color:rgb(113, 249, 245);
+    color:rgb(19, 19, 167);
+    border-radius:5rem; 
+    padding-top:2.5rem; 
+    padding-bottom:2.5rem;
+    padding-left:4.5rem; 
+    padding-right:4.5rem;
+    cursor:pointer;
+}
+
+.infoButton:hover{
+    transition:all 0.1s linear; 
+    background-color:rgb(89, 232, 227);
+}
+
+h3{
+    color:white;
+    font-size:2em; 
+    font-weight:400;
+}
+
+a{
+    font-weight:bold;
+   /* color:rgb(113, 249, 245);*/
+    color:white;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+@media (max-width: 740px){
+    .panel{
+        width:100%;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        padding:0;
+    }
+    .header{
+        margin-top:10vh;
+        text-align: center;
+        margin-bottom:1rem;
+    }
+    .subHeader{
+        padding:0; 
+        width:90%;
+        text-align: center;
+    }
+}
