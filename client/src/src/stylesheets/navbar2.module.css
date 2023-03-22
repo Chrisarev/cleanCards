@@ -1,6 +1,8 @@
 nav {
-    width: 100vw;
-    max-width:100vw;
+    width:100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+    overflow-x:hidden;
     height: 80px;
     display:flex;
     align-items: center;
@@ -8,11 +10,13 @@ nav {
     background-color:rgb(19, 19, 167);
 
 }
+
 .flexContainer{
     display:flex;
     gap:3rem;
     padding-right:3rem;
 }
+
 .logo {
     /*opacity:0;*/
     padding-left:2rem;
