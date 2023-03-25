@@ -4,14 +4,9 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import Navbar from './Navbar2'
 import styles from './stylesheets/useDeck2.module.css'
-import { Transition } from 'react-transition-group'
 import { Link } from "react-router-dom";
+
 const UseDeck2 = (props) => {
-    /*const location = useLocation();
-    const deckId = location.pathname;
-    console.log(deckId);*/
-    /*const {currDeck, setCurrDeck} = useContext(DeckContext);
-    console.log(currDeck); */
     const { deckID, deckStyle } = useParams();
     const [cards, setCards] = useState([])
     const [currCardIndex, setCurrCardIndex] = useState(0);
@@ -19,6 +14,7 @@ const UseDeck2 = (props) => {
     const [completedState, setCompletedState] = useState(false);
     const [visitedCards, setVisitedCards] = useState([0])
 
+    ///retrieves all of the cards inside of the deck user is attempting to use
     useEffect(() => {
         fetch(`/getCards/${deckID}`, {
             method: 'GET',
@@ -30,6 +26,8 @@ const UseDeck2 = (props) => {
         })
     }, [])
 
+    ///handles the revealed state which determines whether 
+    ///the backside of current card is visible 
     const handleReveal = () => {
         if (revealedState === true) {
             setRevealedState(false)
@@ -38,9 +36,13 @@ const UseDeck2 = (props) => {
         }
     }
 
+    ///Adds current card to the visitedCards array and hides the backSide of next card
     const handleNextCard = () => {
         setVisitedCards(visitedCards => [...visitedCards, currCardIndex])
         setRevealedState(false)
+
+        ///Checks to see if user has used all the cards in the deck
+        ///if not, selects a random card from the deck for user to use
         let index = Math.floor(Math.random() * cards.length);
         if (visitedCards.length === cards.length) {
             setCompletedState(true);
@@ -55,8 +57,9 @@ const UseDeck2 = (props) => {
             }
         }
         setCurrCardIndex(index)
-        console.log('currCard:' + currCardIndex)
     }
+
+    ///resets all states so user can reuse current deck
     const handleReuseDeck = () => {
         setVisitedCards([0])
         setCurrCardIndex(0)

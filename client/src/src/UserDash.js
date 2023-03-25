@@ -4,11 +4,8 @@ import Navbar2 from './Navbar2.js'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-/*import DeckContext from './DeckContext';
-import { useContext } from 'react';*/
 
 const UserDash = () => {
-    const navigate = useNavigate();
     const [showAddDeck, setShowAddDeck] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
     const [deckTitle, setDeckTitle] = useState('')
@@ -16,9 +13,8 @@ const UserDash = () => {
     const [deckStyle, setDeckStyle] = useState('')
     const [isPending, setIsPending] = useState(false);
     const [decks, setDecks] = useState([])
-    /*const {currDeck, setCurrDeck} = useContext(DeckContext);*/
 
-    ///Checks to see if user is authenticated
+    ///Checks to see if user is authenticated and retrieves user's decks
     useEffect(() => {
         fetch('/getDecks', {
             method: 'GET',
@@ -30,35 +26,23 @@ const UserDash = () => {
         })
     }, [])
 
-    ///Gets decks created by user from backend as json
-    ///might need delay before rendering from decks state
-    const getUserDecks = async () => {
-        fetch('/getDecks', {
-            method: 'GET',
-            headers: { "Content-Type": "application/json" }
-        }).then((response) => {
-            return response.json()
-        }).then((data) => {
-            setDecks(prev => data)
-        })
-    }
-
     ///Sets showAddDeck state to true so addDeckPanel is visible
     const handleAddDeck = (e) => {
         setShowAddDeck(true);
-
     }
+
     ///Sets showAddDeck state to false so addDeckPanel is NOT visible
     const hideAddDeckPanel = (e) => {
         setShowAddDeck(false);
     }
+
     ///stops propagation so addDeckPanel doesnt disappear when addDeckCard or inputs are clicked
     const childClick = (e) => {
         e.stopPropagation();
     }
 
     ///addDeckPanel (only visible when showAddDeck state is set to true)
-    function addDeckPopUp(props) {
+    function addDeckPopUp(props){
         return (
             <div id="addDeckPanel" className={styles.addDeckPanel} onClick={hideAddDeckPanel}>
                 <div className={styles.addDeckCard} onClick={childClick}>
@@ -116,6 +100,8 @@ const UserDash = () => {
             setDecks(newArr);
         })
     }
+
+    ///sets delete mode state to hide or show the delete button on each deck
     const handleDeleteMode = (e) => {
         if (deleteMode === false) {
             setDeleteMode(true);
@@ -124,6 +110,7 @@ const UserDash = () => {
         }
     }
 
+    ///deletes the given deck from user's account and removes deleted deck from decks state
     const handleDeckDelete = (deckID) => {
         console.log(deckID)
         fetch(`deleteDeck/${deckID}`, {
