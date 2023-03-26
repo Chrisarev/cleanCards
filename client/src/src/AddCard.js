@@ -32,10 +32,12 @@ const AddCard = () => {
         }
     };
 
+
+    ///adds card to database by turning card properties into form data for post
+    ///resets the page once completed so that user can add more cards
     const handleCardSubmit = (e) => {
         e.preventDefault();
         setIsPending(true);
-        const cardData = { firstImage, secondImage, frontSideBody, backSideBody };
         const FD = new FormData();
         FD.append('firstImage', firstImage)
         FD.append('secondImage', secondImage)
@@ -67,6 +69,7 @@ const AddCard = () => {
         })
     }
 
+    ///Renders a success popup at top of screen for 3 seconds while showSuccess state is true
     const renderSuccessComponent = () => {
         setShowSuccess(true);
         setTimeout(function () {

@@ -1,5 +1,6 @@
 import styles from './stylesheets/cardSection.module.css'
 import { Link } from 'react-router-dom';
+
 const CardSection = () => {
   return (
     <div className={styles.cardHolder}>

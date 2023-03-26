@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 const EditDeck = () => {
     const { deckID, deckStyle } = useParams();
     const [cards, setCards] = useState([])
-    const [flippedState, setFlippedState] = useState('')
     const [deleteMode, setDeleteMode] = useState(false)
+
     ///retreive all cards from deck(id in params)
     useEffect(() => {
         fetch(`/getCards/${deckID}`, {
@@ -21,6 +21,7 @@ const EditDeck = () => {
         })
     }, [])
 
+    ///if deleteMode state is set to true then the delete button is visible on all cards in the deck. 
     const handleDeleteMode = () => {
         if (deleteMode) {
             setDeleteMode(false)
@@ -29,6 +30,7 @@ const EditDeck = () => {
         }
     }
 
+    ///deletes card from current deck. 
     const handleCardDelete = (cardID) => {
         fetch(`/deleteCard/${cardID}/${deckID}`, {
             method: 'DELETE',
