@@ -1,7 +1,6 @@
 import './App.css';
 import LogIn from './LogIn'
 import Home from './Home'
-import ExpressReact from './ExpressReact';
 import Signup from './Signup'
 import UserDash from './UserDash';
 import EditDeck from './EditDeck';
@@ -24,7 +23,6 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="signup" element={<Signup />}></Route>
             <Route path="login" element={<LogIn />}></Route>
-            <Route path="testAPI" element={<ExpressReact />}></Route>
             <Route path="userDash" element={<UserDash />}></Route>
             <Route path="/deck/:deckStyle/:deckID" element={<UseDeck2 />}></Route>
             <Route path="/deck/edit/:deckStyle/:deckID" element={<EditDeck />}></Route>

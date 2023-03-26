@@ -15,7 +15,8 @@ const Signup = () => {
         const user = { username, password, email};
         console.log(user)
         setIsPending(true);
-
+        
+        ///adds user to database and assigns their username to localstorage to display on navbar
         fetch('/postUser', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },

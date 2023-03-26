@@ -7,7 +7,9 @@ const InfoPanel = () => {
     const routeChange = () =>{ 
       navigate('signup');
     }
-
+    
+    ///if user is logged in already when they press sign up button, they will be 
+    ///navigated to their userDash, otherwise they will go to signup page
     const signUpFunction = () =>{
       fetch('/login', {
         method:'GET', 
@@ -23,6 +25,8 @@ const InfoPanel = () => {
     })
     }
 
+    ///if user is logged in already when they press log in button, they will be 
+    ///navigated to their userDash, otherwise they will go to login page
     const logInFunction = () =>{
       fetch('/login', {
         method:'GET', 

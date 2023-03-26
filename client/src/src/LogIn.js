@@ -9,12 +9,14 @@ const LogIn = () => {
     const [isPending, setIsPending] = useState(false);
     let navigate = useNavigate(); 
     
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const user = { username, password};
         console.log(user)
         setIsPending(true);
 
+        ///logs user in, 401 response from server means invalid credentials so they must try again
         fetch('/login', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
@@ -30,14 +32,15 @@ const LogIn = () => {
             }
             return response.json()
         })
-        .then((data) => { ///data is the json from response
+        .then((data) => {
+            ///if user logs in successfully navigate to userDash and set their username in localstorage
             if(data.user){
                 navigate('/userDash')
                 localStorage.setItem('username',data.user.username);
             }
-            //navigate(data.redirectURL)
         })
     }
+    
     return (
         <>
             <Navbar />

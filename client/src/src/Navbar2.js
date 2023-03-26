@@ -9,6 +9,7 @@ const Navbar = () => {
     const [logoutString, setlogoutString] = useState('')
     const navigate = useNavigate();
 
+    ///sets username inside of navbar and logout if user has logged in
     useEffect(() => {
         let varr = localStorage.getItem('username');
         if (varr === null) {
@@ -19,6 +20,8 @@ const Navbar = () => {
         }
     }, [username1, logoutString])
 
+    ///logs user out by deleting their session from database and removing username from 
+    ///localstorage
     const logOutFunction = () => {
         localStorage.removeItem('username')
         fetch('/logout', {
