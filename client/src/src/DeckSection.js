@@ -8,7 +8,7 @@ const DeckSection = () => {
                 <h2 className={styles.deckSubHeader}>No matter what the subject, we've got you covered.</h2>
             </div>
             <div className={styles.imageSection}>
-                <svg width="100%" height="100%" viewBox="0 0 450 510" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="60%" height="60%" viewBox="0 0 450 510" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="Frame 1">
                         <rect width="450" height="510" />
                         <g id="decks">
@@ -96,8 +96,7 @@ const DeckSection = () => {
                             <rect width="50" height="50" fill="white" transform="translate(157 237)" />
                         </clipPath>
                     </defs>
-                </svg>
-
+                </svg> 
             </div>
         </div>
     );
