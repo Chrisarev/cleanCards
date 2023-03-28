@@ -1,20 +1,22 @@
 .panel{
     display:flex; 
     flex-direction: row;
-    background-color:rgb(83, 80, 106);
-    min-height:70vh; 
-    max-height:100vh;
+    min-height:63vh; 
     width:100%; 
     align-items: center;
     justify-content: center;
+    background-size:100%;
+    background:url(./wave.svg) no-repeat;
+    background-position:bottom;
+    background-color:rgb(83, 80, 106);
 }
+
 .panel .visualSection{
     height:100%;
     width:50%; 
-}
-.visualSection svg{
-    margin-top:10%;
-    margin-left:25%;
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .panel .infoSection{
@@ -37,7 +39,7 @@
     border-radius:5rem; 
     padding:2.5rem 4rem;
     cursor:pointer;
-    
+    white-space: nowrap;
 }
 
 .panel a:hover{
@@ -48,24 +50,27 @@
 
 .infoSection p{
     color:white;
-   /* font-size:calc(4em + 4vmin); */
-    font-size:5em;
+    font-size:calc(4em + 1vmin); 
     font-weight:700;
     font-family: clashDisplayBold;
     margin:0;
     width:30%;
 }
+
 .infoSection p:nth-of-type(1){
     align-self: flex-start;
     margin-left:18%;
 }
+
 .infoSection p:nth-of-type(2){
     align-self:center;
 }
+
 .infoSection p:nth-of-type(3){
     align-self:flex-end;
     margin-right:15%;
 }
+
 /**** SVG ANIMATION STYLES ****/
 svg * {
     transform-box: fill-box;
@@ -189,12 +194,21 @@ svg * {
 }
 @media (max-width:740px) {
     .panel{flex-direction: column;}
-    .visualSection svg{
-        margin-left:15%;
+    .panel .visualSection{
+       justify-content: center;
     }
     .panel a{
         text-align: center;
         padding:2.5rem 3rem;
+    }
+    .panel .infoSection{
+        width:60%;
+    }
+    .infoSection p:nth-of-type(1){
+        margin-left:0%;
+    }
+    .infoSection p:nth-of-type(3){
+        margin-right:0%;
     }
 }
 @media (max-height:500px) {
