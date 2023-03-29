@@ -4,6 +4,8 @@ import InfoPanel from './InfoPanel.js'
 import CardSection from './CardSection'
 import DeckSection from './DeckSection'
 import EndHomeSection from './EndHomeSection.js'
+import Footer from './Footer.js'
+
 import './stylesheets/Home.css'
 import { useState,useEffect } from 'react'
 
@@ -29,6 +31,7 @@ const Home = () => {
             <CardSection />
             <DeckSection />
             <EndHomeSection />
+            <Footer />
         </div>
       );
 }

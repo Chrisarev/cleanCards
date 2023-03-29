@@ -1,0 +1,32 @@
+.panel{
+    max-width:100%;
+    min-height:20vh;
+    background-color:rgb(113, 249, 245);
+    border:1px solid rgb(113, 249, 245);
+}
+
+.brandIcon{
+    padding-top:3rem;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brandHeader{
+    font-family: clashDisplayBold;
+    color:rgb(83, 80, 106);
+    font-size:calc(2.5em + 1vmin);
+}
+
+.brandSubHeader{
+    padding-left:1rem;
+    font-family: clashDisplayBold;
+    color:rgb(83, 80, 106);
+    font-size:calc(1em + 1vmin);
+}
+@media (max-width:740px) {
+    .brandHeader{
+        font-size:calc(2em + 1vmin);
+    }
+}

@@ -5,10 +5,10 @@
     width:100%; 
     align-items: center;
     justify-content: center;
-    background-size:100%;
     background:url(./wave.svg) no-repeat;
-    background-position:bottom;
     background-color:rgb(83, 80, 106);
+    background-position:100% 105%;
+    border-bottom:1px solid rgb(113, 249, 245);
 }
 
 .panel .visualSection{
@@ -29,22 +29,22 @@
 }
 
 .panel a{
+    border:1px solid rgb(83, 80, 106);
     font-weight:400;
     font-size:2.5em;
     margin-top:1.2rem;
     margin-bottom:1.2rem;
-    border:none;
-    background-color:rgb(89, 232, 227);
+    background-color:rgb(113, 249, 245);
     color:rgb(51, 48, 70);
-    border-radius:5rem; 
     padding:2.5rem 4rem;
     cursor:pointer;
     white-space: nowrap;
+    border-radius:5rem; 
 }
 
 .panel a:hover{
     transition:all 0.1s linear; 
-    background-color:rgb(76, 191, 187);
+    background-color:rgb(89, 232, 227);
     text-decoration:none;
 }
 
@@ -193,7 +193,10 @@ svg * {
     }
 }
 @media (max-width:740px) {
-    .panel{flex-direction: column;}
+    .panel{
+        flex-direction: column;
+        background-position:100% 100%;
+    }
     .panel .visualSection{
        justify-content: center;
     }
