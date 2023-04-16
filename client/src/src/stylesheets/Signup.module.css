@@ -19,7 +19,11 @@ form{
     padding:1rem;
     border-radius: 8px;
 }
-
+@media(min-width:1925px){
+    .formCard{
+        padding:2rem;
+    }
+}
 .formCard label{
     font-size: calc(1em + 1vmin);
     font-weight:600;

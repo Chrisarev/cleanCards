@@ -32,7 +32,7 @@ function App() {
       </div>
     </Router>
     </DeckContext.Provider>
-  );
+  )
 }
 
 export default App;

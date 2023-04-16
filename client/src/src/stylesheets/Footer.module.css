@@ -1,6 +1,6 @@
 .panel{
     max-width:100%;
-    min-height:20vh;
+    min-height:15vh;
     background-color:rgb(113, 249, 245);
     border:1px solid rgb(113, 249, 245);
 }
