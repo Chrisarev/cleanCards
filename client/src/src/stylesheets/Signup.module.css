@@ -19,7 +19,7 @@ form{
     padding:1rem;
     border-radius: 8px;
 }
-@media(min-width:1925px){
+@media(min-width:1920px) {
     .formCard{
         padding:2rem;
     }
