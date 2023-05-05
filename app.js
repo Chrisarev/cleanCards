@@ -151,11 +151,12 @@ app.post('/addDeck', isLoggedIn, async (req, res) => {
 
 app.post('/addCard/:deckID', isLoggedIn, upload.any(), async (req, res) => {
     const formData = req.body;
+    console.log(req.files)
     try {
         const deck= await Deck.findById({ _id: req.params.deckID })
         const newCard = new Card();
         newCard.containingDeck = req.params.deckID;
-        if (req.files) {
+        if (req.files.length > 0) {
             newCard.frontSide.image = req.files[0].path;
             newCard.backSide.image = req.files[1].path;
         }
@@ -204,7 +205,7 @@ app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+ '/public/index.html'))
 })
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 6000;
 app.listen(PORT, () => {
     console.log(`Serving on port: ${PORT}`)
 })

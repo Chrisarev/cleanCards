@@ -39,6 +39,7 @@ const AddCard = () => {
         e.preventDefault();
         setIsPending(true);
         const FD = new FormData();
+        console.log('got here')
         FD.append('firstImage', firstImage)
         FD.append('secondImage', secondImage)
         FD.append('frontSideBody', frontSideBody)
@@ -91,6 +92,7 @@ const AddCard = () => {
                         <input type="file" name="image[firstImage]" onChange={fileOnChange} id="firstImageInput"></input>
                         <textarea id="frontsideBody"
                             name="frontsideBody"
+                            required
                             value={frontSideBody}
                             onChange={(e) => setFrontSideBody(e.target.value)}>
                         </textarea>
@@ -101,6 +103,7 @@ const AddCard = () => {
                         <input type="file" name="image[secondImage]" onChange={fileOnChange} id="secondImageInput"></input>
                         <textarea id="backsideBody"
                             name="backsideBody"
+                            required
                             value={backSideBody}
                             onChange={(e) => setBackSideBody(e.target.value)}>
                         </textarea>

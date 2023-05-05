@@ -2,7 +2,7 @@ import styles from './stylesheets/UserDash.module.css'
 import '../src/stylesheets/deckStyles.css'
 import Navbar2 from './Navbar2.js'
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const UserDash = () => {
@@ -13,13 +13,18 @@ const UserDash = () => {
     const [deckStyle, setDeckStyle] = useState('')
     const [isPending, setIsPending] = useState(false);
     const [decks, setDecks] = useState([])
-
+    let navigate = useNavigate(); 
     ///Checks to see if user is authenticated and retrieves user's decks
     useEffect(() => {
         fetch('/getDecks', {
             method: 'GET',
             headers: { "Content-Type": "application/json" }
         }).then((response) => {
+            if(response.status==401){
+                console.log('status:'+response.status); 
+                navigate('/login')
+                return response; 
+            }
             return response.json()
         }).then((data) => {
             setDecks(prev => data)

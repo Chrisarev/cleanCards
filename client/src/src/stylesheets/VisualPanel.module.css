@@ -1,6 +1,13 @@
 
 .panel{
     width:50%; 
+    height:80%; 
+}
+.svgHolder{
+    height:100%; 
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .stars{
@@ -38,7 +45,7 @@
     animation-delay: 0.4s;
 }
 
-@media (max-width: 740px){
+@media (max-width: 1000px){
     .panel{
         display:none;
     }
