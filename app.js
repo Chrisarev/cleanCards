@@ -158,7 +158,9 @@ app.post('/addCard/:deckID', isLoggedIn, upload.any(), async (req, res) => {
         newCard.containingDeck = req.params.deckID;
         if (req.files.length > 0) {
             newCard.frontSide.image = req.files[0].path;
-            req.files[1].path ? newCard.backSide.image = req.files[1].path : newCard.backSide.image = ''; 
+            if(!req.files[1].path){
+                newCard.backSide.image = '';
+            }
         }
         ///Need to check to see if formdata is empty 
         newCard.frontSide.body = formData.frontSideBody;

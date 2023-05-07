@@ -5,11 +5,7 @@
     max-width: 100vw;
     align-items: center;
     justify-content: center;
-    background:url(./wave.svg) no-repeat;
     background-color:rgb(83, 80, 106);
-    background-position:100% 105%;
-    border-bottom:1px solid rgb(113, 249, 245);
-    
 }
 
 .panel .visualSection{
@@ -19,6 +15,7 @@
     align-items: center;
     justify-content: flex-end;
 }
+
 @media(min-width:1920px){
     .visualSection svg{
         width:50%;
@@ -202,7 +199,6 @@ svg * {
 @media (max-width:740px) {
     .panel{
         flex-direction: column;
-        background-position:100% 100%;
     }
     .panel .visualSection{
        justify-content: center;
